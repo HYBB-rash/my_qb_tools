@@ -1,0 +1,17 @@
+[project]
+name = "my_qb_tools"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "python-dotenv >=1.00",
+    "python-qbittorrent (>=0.4.3,<0.5.0)",
+    "requests (>=2.31.0,<3.0.0)",
+]
+
+[dependency-groups] # PEP 735：开发/测试等分组
+dev = ["pytest", "ruff", "mypy"]
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
+python_files = ["test_*.py"]
+addopts = "-q"

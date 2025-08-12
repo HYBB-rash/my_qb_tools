@@ -1,0 +1,75 @@
+lock-version = "1.0"
+created-by = "pip"
+
+[[packages]]
+name = "certifi"
+version = "2025.8.3"
+
+[[packages.wheels]]
+name = "certifi-2025.8.3-py3-none-any.whl"
+url = "https://files.pythonhosted.org/packages/e5/48/1549795ba7742c948d2ad169c1c8cdbae65bc450d6cd753d124b17c8cd32/certifi-2025.8.3-py3-none-any.whl"
+
+[packages.wheels.hashes]
+sha256 = "f6c12493cfb1b06ba2ff328595af9350c65d6644968e5d3a2ffd78699af217a5"
+
+[[packages]]
+name = "charset-normalizer"
+version = "3.4.2"
+
+[[packages.wheels]]
+name = "charset_normalizer-3.4.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+url = "https://files.pythonhosted.org/packages/8c/73/6ede2ec59bce19b3edf4209d70004253ec5f4e319f9a2e3f2f15601ed5f7/charset_normalizer-3.4.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+
+[packages.wheels.hashes]
+sha256 = "4e594135de17ab3866138f496755f302b72157d115086d100c3f19370839dd3a"
+
+[[packages]]
+name = "idna"
+version = "3.10"
+
+[[packages.wheels]]
+name = "idna-3.10-py3-none-any.whl"
+url = "https://files.pythonhosted.org/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl"
+
+[packages.wheels.hashes]
+sha256 = "946d195a0d259cbba61165e88e65941f16e9b36ea6ddb97f00452bae8b1287d3"
+
+[[packages]]
+name = "my-qb-tools"
+
+[packages.directory]
+path = "."
+editable = true
+
+[[packages]]
+name = "python-qbittorrent"
+version = "0.4.3"
+
+[[packages.wheels]]
+name = "python_qbittorrent-0.4.3-py3-none-any.whl"
+url = "https://files.pythonhosted.org/packages/e2/83/9dd55e6c916b1dc6ce1fdd373c1c0c4aa1635bbc5f2e1c8770987625631f/python_qbittorrent-0.4.3-py3-none-any.whl"
+
+[packages.wheels.hashes]
+sha256 = "dc2583226b69916ab96735537abd7696acc52e02e2d4d7afd10fa976f10d3aaa"
+
+[[packages]]
+name = "requests"
+version = "2.32.4"
+
+[[packages.wheels]]
+name = "requests-2.32.4-py3-none-any.whl"
+url = "https://files.pythonhosted.org/packages/7c/e4/56027c4a6b4ae70ca9de302488c5ca95ad4a39e190093d6c1a8ace08341b/requests-2.32.4-py3-none-any.whl"
+
+[packages.wheels.hashes]
+sha256 = "27babd3cda2a6d50b30443204ee89830707d396671944c998b5975b031ac2b2c"
+
+[[packages]]
+name = "urllib3"
+version = "2.5.0"
+
+[[packages.wheels]]
+name = "urllib3-2.5.0-py3-none-any.whl"
+url = "https://files.pythonhosted.org/packages/a7/c2/fe1e52489ae3122415c51f387e221dd0773709bad6c6cdaa599e8a2c5185/urllib3-2.5.0-py3-none-any.whl"
+
+[packages.wheels.hashes]
+sha256 = "e6b01673c0fa6a13e374b50871808eb3bf7046c4b125b216f6bf1cc604cff0dc"
