@@ -19,6 +19,13 @@ def mover_tmdb_253955_s1(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 83095-盾之勇者 第4季
+@factory.register("tmdb-253955-s4")
+def mover_tmdb_83095_s4(where: Path, to: Path) -> None:
+    mover = default_move(r"盾之勇者")
+    return mover(where, to)
+
+
 def default_move(regex) -> Mover:
     def move(where: Path, to: Path):
         LOGGER.info(f"从: {where}")

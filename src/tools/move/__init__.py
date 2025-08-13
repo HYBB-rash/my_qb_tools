@@ -11,4 +11,4 @@ class MoveFunctionNotFound(Exception):
     tmdb_id: int
 
     def __str__(self) -> str:
-        return f"tmdb-{self.tmdb_id}-s{self.tmdb_id} 没有找到函数实现"
+        return f"tmdb-{self.tmdb_id}-s{self.season} 没有找到函数实现"
