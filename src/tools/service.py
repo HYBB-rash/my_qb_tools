@@ -179,7 +179,7 @@ def move_file(task: Task, cfg: Cfg) -> None:
     tmdb_id = cfg.tmdb_id
     tv_show_name = get_tv_show_name_by_id(tmdb_id)
 
-    season = f"season {task.tags.season}"
+    season = f"Season {task.tags.season}"
 
     destination = Path(root_dir).joinpath(tv_show_name).joinpath(season)
     LOGGER.debug(f"目标地址: {destination}")
