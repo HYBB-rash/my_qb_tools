@@ -12,6 +12,13 @@ def mover_tmdb_243224_s1(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 253955-定风波 第一季
+@factory.register("tmdb-253955-s1")
+def mover_tmdb_253955_s1(where: Path, to: Path) -> None:
+    mover = default_move(r"定风波")
+    return mover(where, to)
+
+
 def default_move(regex) -> Mover:
     def move(where: Path, to: Path):
         LOGGER.info(f"从: {where}")
