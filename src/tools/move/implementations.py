@@ -26,6 +26,13 @@ def mover_tmdb_83095_s4(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 292554-定孕成婚 第4季
+@factory.register("tmdb-292554-s1")
+def mover_tmdb_292554_s1(where: Path, to: Path) -> None:
+    mover = default_move(r"Kon")
+    return mover(where, to)
+
+
 def default_move(regex) -> Mover:
     def move(where: Path, to: Path):
         LOGGER.info(f"从: {where}")
