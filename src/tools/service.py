@@ -169,7 +169,7 @@ def move_file(task: Task, cfg: Cfg) -> None:
     )
 
     root_dir = category_mapping.get(task.category)
-    assert isinstance(root_dir, str), "路径一定是字符串"
+    assert isinstance(root_dir, str), f"路径一定是字符串: {root_dir}"
 
     tmdb_id = cfg.tmdb_id
     tv_show_name = get_tv_show_name_by_id(tmdb_id)
@@ -288,7 +288,7 @@ def scrape_and_rename():
 
 def create_cfg(season: int, tmdb_id: int, cfg: dict[str, Any] | None = None):
     if cfg is None:
-        with open("./cfg.json") as file:
+        with open("./cfg.json", encoding="utf-8") as file:
             cfg = json.load(file)
 
     if cfg is None or not isinstance(cfg, dict):

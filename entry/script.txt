@@ -1,2 +1,6 @@
 .\entry\trigger.ps1 "The Movie 2024 1080p WEB-DL" "电视剧" "season=01,tmdb=243224-凡人修仙传" "Y:\Downloader\Downloads\电视剧\【测试脚本专用】凡人修仙传[60帧率版本][高码版][第27集][国语配音+中文字幕].2025.2160p.WEB-DL.H265.HQ.60fps.AAC-ColorTV"
 .\entry\trigger.ps1 "The Movie 2024 1080p WEB-DL" "电视剧" "season=01,tmdb=243224-凡人修仙传" "Y:\Downloader\Downloads\电视剧\【测试脚本专用】凡人修仙传[60帧率版本][高码版][第27集][国语配音+中文字幕].2025.2160p.WEB-DL.H265.HQ.60fps.AAC-ColorTV\凡人修仙传.The.Immortal.Ascension.S01E27.2025.2160p.WEB-DL.H265.HQ.60fps.AAC-ColorTV.mp4"
+
+2025/8/13 12:03 - 运行外部程序。Torrent：“【不太灵影视 www.7BT0.com】凡人修仙传[60帧率版本][第24集][国语配音+中文字幕].2025.2160p.WEB-DL.H265.60fps.AAC-ColorTV”。命令：`powershell -NoProfile -Command "\"C:\Users\Herman\Desktop\my_qb_tools\entry.ps1\" \"【不太灵影视 www.7BT0.com】凡人修仙传[60帧率版本][第24集][国语配音+中文字幕].2025.2160p.WEB-DL.H265.60fps.AAC-ColorTV\" \"测试\" \"season=1,tmdb=243224-凡人修仙传\" \"Y:\Downloader\Downloads\测试\【不太灵影视 www.7BT0.com】凡人修仙传[60帧率版本][第24集][国语配音+中文字幕].2025.2160p.WEB-DL.H265.60fps.AAC-ColorTV\""`
+
+powershell -NoProfile -File "C:\Users\Herman\Desktop\my_qb_tools\entry\trigger.ps1" "【不太灵影视 www.7BT0.com】凡人修仙传[60帧率版本][第24集][国语配音+中文字幕].2025.2160p.WEB-DL.H265.60fps.AAC-ColorTV" "测试" "season=1,tmdb=243224-凡人修仙传" "Y:\Downloader\Downloads\测试\【不太灵影视 www.7BT0.com】凡人修仙传[60帧率版本][第24集][国语配音+中文字幕].2025.2160p.WEB-DL.H265.60fps.AAC-ColorTV"

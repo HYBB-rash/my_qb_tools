@@ -1,7 +1,8 @@
 {
     "category_mapping": {
-        "电视剧": "Y:/Downloader/Videos/测试",
+        "电视剧": "Y:/Downloader/Videos/电视剧",
         "动漫": "Y:/Downloader/Videos/动漫",
-        "电影": "Y:/Downloader/Videos/电影"
+        "电影": "Y:/Downloader/Videos/电影",
+        "测试": "Y:/Downloader/Videos/测试"
     }
 }
