@@ -9,6 +9,8 @@ if (-not (Test-Path $VenvPython)) {
 }
 
 # 让 Python 内部 logging 写入单独的日志文件（避免与 Transcript 编码冲突）
+$LogDir = Join-Path $ScriptDir "log"
+if (-not (Test-Path $LogDir)) { New-Item -ItemType Directory -Force -Path $LogDir | Out-Null }
 $PyLogFile = Join-Path $LogDir ("run_py_{0}_{1}.log" -f $stamp, $safe)
 $env:MY_QB_TOOLS_LOG_FILE = $PyLogFile
 
