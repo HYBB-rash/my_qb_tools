@@ -112,7 +112,12 @@ def get_cfg(task: Task) -> Cfg:
     result = dba.get_cfg(task)
 
     if result.value is None:
-        raise CfgNotFoundException(task)
+        create_cfg(task.tags.season, task.tags.tmdb.id)
+        # raise CfgNotFoundException(task)
+
+    result = dba.get_cfg(task)
+    if result.value is None:
+        raise RuntimeError("创建配置的时候有未知错误。")
 
     return result.value
 
