@@ -1,6 +1,5 @@
 import json
 import os
-import subprocess
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -286,8 +285,9 @@ def scrape_and_rename():
     step1 = [str(tmm_cmd), "tvshow", "-u", "--scrapeUnscraped", "-r"]
     # step2 = [str(tmm_cmd), "tvshow", "--scrapeAll"]
 
-    return_code = subprocess.run(step1, check=False)
-    LOGGER.info(f"tmm 程序退出码: {return_code}")
+    # return_code = subprocess.run(step1, check=False)
+    # LOGGER.info(f"tmm 程序退出码: {return_code}")
+    LOGGER.warning(f"暂时不实现了，手动刮一阵子先 {step1}")
     # subprocess.run(step2, check=False)
 
 
