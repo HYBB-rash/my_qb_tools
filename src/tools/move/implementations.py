@@ -20,7 +20,7 @@ def mover_tmdb_253955_s1(where: Path, to: Path) -> None:
 
 
 # 83095-盾之勇者 第4季
-@factory.register("tmdb-253955-s4")
+@factory.register("tmdb-83095-s4")
 def mover_tmdb_83095_s4(where: Path, to: Path) -> None:
     mover = default_move(r"盾之勇者")
     return mover(where, to)
