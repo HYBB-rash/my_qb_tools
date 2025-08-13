@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import logging
+import logging.handlers
 import logging.config
 import os
 import re
 import sqlite3
 import time
 from pathlib import Path
+import sys
 from typing import (
     Any,
     Callable,
@@ -63,6 +65,30 @@ def setup_logging():
     ch.setFormatter(formatter)
     root.addHandler(ch)
 
+    # 文件日志（默认写入项目根下 log/app.log；也支持通过环境变量指定文件路径）
+    try:
+        env_log_file = os.getenv("MY_QB_TOOLS_LOG_FILE")
+        if env_log_file and env_log_file.strip():
+            log_path = Path(env_log_file).expanduser()
+            log_dir = log_path.parent
+        else:
+            project_root = Path(__file__).resolve().parents[2]
+            log_dir = project_root / "log"
+            log_path = log_dir / "app.log"
+        log_dir.mkdir(parents=True, exist_ok=True)
+        fh = logging.handlers.RotatingFileHandler(
+            filename=str(log_path),
+            maxBytes=5 * 1024 * 1024,  # 5 MB
+            backupCount=5,
+            encoding="utf-8",
+        )
+        fh.setLevel(logging.DEBUG)
+        fh.setFormatter(formatter)
+        root.addHandler(fh)
+    except Exception as e:
+        # 文件日志失败不应阻塞主流程
+        logging.getLogger(__name__).warning("文件日志初始化失败: %s", e)
+
     load_dotenv()
     # Telegram（从环境变量读，避免泄漏）
     token = os.getenv("TELEGRAM_BOT_TOKEN")
@@ -84,6 +110,14 @@ def setup_logging():
 
     # 避免 requests 自身日志回流触发推送（可选）
     logging.getLogger("requests").setLevel(logging.WARNING)
+    # 捕获未处理异常到日志
+    def _excepthook(exc_type, exc, tb):
+        logging.getLogger(__name__).exception("未捕获异常", exc_info=(exc_type, exc, tb))
+    try:
+        sys.excepthook = _excepthook
+    except Exception:
+        pass
+
     return logging.getLogger(__name__)
 
 

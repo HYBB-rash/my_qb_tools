@@ -28,6 +28,10 @@ $safe  = ($Name -replace "[^a-zA-Z0-9._-]","_").Trim()
 if ($safe.Length -gt 80) { $safe = $safe.Substring(0,80) }
 $LogFile = Join-Path $LogDir ("run_ps_{0}_{1}.log" -f $stamp, $safe)
 
+# 让 Python 内部 logging 写入单独的日志文件（避免与 Transcript 编码冲突）
+$PyLogFile = Join-Path $LogDir ("run_py_{0}_{1}.log" -f $stamp, $safe)
+$env:MY_QB_TOOLS_LOG_FILE = $PyLogFile
+
 # 使用 Transcript 捕获包含外部进程在内的所有输出（含 stderr）
 $code = $null
 Start-Transcript -Path $LogFile -Append | Out-Null
