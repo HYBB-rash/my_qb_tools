@@ -26,10 +26,19 @@ def mover_tmdb_83095_s4(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
-# 292554-定孕成婚 第4季
+# 292554-定孕成婚 第1季
 @factory.register("tmdb-292554-s1")
 def mover_tmdb_292554_s1(where: Path, to: Path) -> None:
     mover = default_move(r"Kon")
+    return mover(where, to)
+
+
+# 277513-我怎么可能成为你的恋人，不行不行！ 第1季
+@factory.register("tmdb-277513-s1")
+def mover_tmdb_277513_s1(where: Path, to: Path) -> None:
+    # 排除所有版本号形式：v + 数字（大小写不敏感），例如 v2、v3、v10、v123 等
+    # 注意：不依赖词边界，以便匹配诸如 "-06v2" 的场景
+    mover = default_move(r"(?i)^(?!.*v\d+).*我怎么可能成为你的恋人")
     return mover(where, to)
 
 
