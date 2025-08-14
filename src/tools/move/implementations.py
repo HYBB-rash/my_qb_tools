@@ -42,6 +42,13 @@ def mover_tmdb_277513_s1(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 86031-石纪元
+@factory.register("tmdb-86031-s4")
+def mover_tmdb_86031_s4(where: Path, to: Path) -> None:
+    mover = default_move(r"Dr.STONE")
+    return mover(where, to)
+
+
 def default_move(regex) -> Mover:
     def move(where: Path, to: Path):
         LOGGER.info(f"从: {where}")
