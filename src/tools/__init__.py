@@ -54,7 +54,7 @@ def execute() -> Result[None, LockExpiredError]:
             scrape_and_rename()
             change_task_status_done(task)
         case Err(error=e):
-            LOGGER.info(f"没有任务，跳过...{e}")
+            LOGGER.debug(f"{e}. 没有任务，跳过...")
 
     return release_lock("execute_achive", lock_token)
 
