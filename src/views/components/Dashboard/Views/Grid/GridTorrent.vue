@@ -13,9 +13,10 @@ import ItemSpeed from '@/components/Dashboard/DashboardItems/ItemSpeed.vue'
 import ItemText from '@/components/Dashboard/DashboardItems/ItemText.vue'
 import { DashboardPropertyType } from '@/constants/vuetorrent'
 import { comparators, getTorrentStateColor } from '@/helpers'
-import { useAppStore, useVueTorrentStore } from '@/stores'
+import { useAppStore, useDialogStore, useVueTorrentStore } from '@/stores'
 import { useDashboardStore } from '@/stores/dashboard'
 import { Torrent } from '@/types/vuetorrent'
+import TmdbInfoDialog from '@/components/Dialogs/TmdbInfoDialog.vue'
 
 const props = defineProps<{ torrent: Torrent }>()
 
@@ -28,6 +29,7 @@ const { current } = useTheme()
 const appStore = useAppStore()
 const dashboardStore = useDashboardStore()
 const vuetorrentStore = useVueTorrentStore()
+const dialogStore = useDialogStore()
 
 const torrentProperties = computed(() => {
   const ppts = props.torrent.progress === 1 ? vuetorrentStore.doneGridProperties : vuetorrentStore.busyGridProperties
@@ -63,6 +65,10 @@ function getComponent(type: DashboardPropertyType) {
 
 const isTorrentSelected = computed(() => dashboardStore.isTorrentInSelection(props.torrent.hash))
 const stateColor = computed(() => current.value.colors[getTorrentStateColor(props.torrent.state)])
+
+function openTmdbDialog(t: Torrent) {
+  dialogStore.createDialog(TmdbInfoDialog, { hash: t.hash, initialName: t.name })
+}
 </script>
 
 <template>
@@ -80,6 +86,14 @@ const stateColor = computed(() => current.value.colors[getTorrentStateColor(prop
         <template v-for="ppt in torrentProperties">
           <component :is="getComponent(ppt.type)" v-if="ppt.props" :key="ppt.name" :torrent="torrent" v-bind="ppt.props" />
         </template>
+        <div class="d-flex flex-column">
+          <div class="text-caption text-grey">
+            {{ $t('Action') }}
+          </div>
+          <div>
+            <v-btn prepend-icon="mdi-database-plus" variant="elevated" color="accent" class="ml-2" @click="openTmdbDialog(torrent)"> 设定tmdb信息 </v-btn>
+          </div>
+        </div>
       </div>
     </v-card-text>
   </v-card>

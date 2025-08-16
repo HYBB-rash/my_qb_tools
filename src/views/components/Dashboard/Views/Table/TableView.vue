@@ -6,8 +6,9 @@ import TableTorrent from './TableTorrent.vue'
 import { useI18nUtils } from '@/composables'
 import { TorrentState } from '@/constants/vuetorrent'
 import { comparators, getTorrentStateColor } from '@/helpers'
-import { useAppStore, useDashboardStore, useTorrentStore, useVueTorrentStore } from '@/stores'
+import { useAppStore, useDashboardStore, useDialogStore, useTorrentStore, useVueTorrentStore } from '@/stores'
 import { Torrent, Torrent as TorrentType } from '@/types/vuetorrent'
+import TmdbInfoDialog from '@/components/Dialogs/TmdbInfoDialog.vue'
 
 defineProps<{
   height: number
@@ -28,6 +29,7 @@ const appStore = useAppStore()
 const dashboardStore = useDashboardStore()
 const { sortCriterias } = storeToRefs(useTorrentStore())
 const vuetorrentStore = useVueTorrentStore()
+const dialogStore = useDialogStore()
 
 const torrentProperties = computed(() => vuetorrentStore.tableProperties.filter(ppt => ppt.active).sort((a, b) => comparators.numeric.asc(a.order, b.order)))
 const sortCriteria = computed({
@@ -58,6 +60,10 @@ function isTorrentSelected(torrent: TorrentType) {
 function getTorrentRowColorClass(torrent: TorrentType) {
   return [isTorrentSelected(torrent) ? `bg-${getTorrentStateColor(torrent.state)}-darken-3` : '']
 }
+
+function openTmdbDialog(t: TorrentType) {
+  dialogStore.createDialog(TmdbInfoDialog, { hash: t.hash, initialName: t.name })
+}
 </script>
 
 <template>
@@ -79,6 +85,7 @@ function getTorrentRowColorClass(torrent: TorrentType) {
           <th v-else-if="header.key === 'multipleSelectionCheckbox'" />
           <Header v-else :title="header.title!" :sort-key="header.key!" @on-header-click="onHeaderClick(header.key as keyof Torrent)" />
         </template>
+        <Header :title="'Action'" :sort-key="''" @on-header-click="() => {}" />
       </tr>
     </template>
 
@@ -109,10 +116,13 @@ function getTorrentRowColorClass(torrent: TorrentType) {
             @click.stop="$emit('onCheckboxClick', $event, torrent)" />
         </td>
 
-        <td class="torrent-name text-no-wrap">
+        <td class="text-no-wrap">
           {{ torrent.name }}
         </td>
         <TableTorrent :torrent="torrent" />
+        <td class="text-no-wrap">
+          <v-btn class="ml-2" size="small" variant="text" prepend-icon="mdi-database-plus" @click.stop="openTmdbDialog(torrent)"> 设定tmdb信息 </v-btn>
+        </td>
       </tr>
     </template>
   </v-data-table>

@@ -40,3 +40,4 @@ vuetorrent-demo/**
 docker/**
 coverage/
 config/
+.env.development
