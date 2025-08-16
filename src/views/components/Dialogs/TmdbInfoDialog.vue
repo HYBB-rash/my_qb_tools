@@ -8,8 +8,12 @@ import type { TvDetails, TvSearchResult } from '@/types/tmdb'
 
 const props = defineProps<{
   guid: string
-  hash: string
+  hash?: string
   initialName?: string
+}>()
+
+const emit = defineEmits<{
+  submit: [string[]]
 }>()
 
 const { isOpened } = useDialog(props.guid)
@@ -74,10 +78,14 @@ async function submit() {
   const tmdbTag = `tmdb=${id}-${safeTitle}`
   const seasonTag = `season=${s}`
 
-  // 确保标签存在，再绑定到种子
-  await tagStore.createTags([tmdbTag, seasonTag])
-  await torrentStore.addTorrentTags([props.hash], [tmdbTag, seasonTag])
-  maindataStore.forceMaindataSync()
+  // 如果提供了 hash，按原行为写入到种子；否则通过事件返回给调用方
+  if (props.hash) {
+    await tagStore.createTags([tmdbTag, seasonTag])
+    await torrentStore.addTorrentTags([props.hash], [tmdbTag, seasonTag])
+    maindataStore.forceMaindataSync()
+  } else {
+    emit('submit', [tmdbTag, seasonTag])
+  }
 
   close()
 }
@@ -100,6 +108,7 @@ function backToResults() {
 
 // 当打开对话框时，如果已存在 tmdb=... 和 season=... 两个标签，则直接加载详情
 onMounted(async () => {
+  if (!props.hash) return
   const t = torrentStore.getTorrentByHash(props.hash)
   const tags = t?.tags ?? []
   const tmdbTag = tags.find(tag => tag.startsWith('tmdb='))
@@ -131,6 +140,7 @@ onMounted(async () => {
 })
 
 async function clearExisting() {
+  if (!props.hash) return
   const t = torrentStore.getTorrentByHash(props.hash)
   const tags = t?.tags ?? []
   const toRemove = tags.filter(tag => tag.startsWith('tmdb=') || tag.startsWith('season='))
@@ -225,7 +235,7 @@ const dialogWidth = computed(() => Math.round(winWidth.value * 0.618))
       <v-card-actions>
         <v-spacer />
         <v-btn v-if="!showSearch" variant="text" @click="backToResults">返回</v-btn>
-        <v-btn variant="text" color="warning" @click="clearExisting">清除 TMDB 信息</v-btn>
+        <v-btn v-if="props.hash" variant="text" color="warning" @click="clearExisting">清除 TMDB 信息</v-btn>
         <v-btn color="error" @click="close">取消</v-btn>
         <v-btn color="accent" :disabled="!selectedId || !selectedSeason" @click="submit">保存</v-btn>
       </v-card-actions>

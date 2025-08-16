@@ -4,7 +4,8 @@ import HistoryField from '@/components/Core/HistoryField.vue'
 import { useI18nUtils } from '@/composables'
 import { AppPreferences } from '@/constants/qbit'
 import { HistoryKey } from '@/constants/vuetorrent'
-import { useAppStore, useCategoryStore, usePreferenceStore, useTagStore } from '@/stores'
+import { useAppStore, useCategoryStore, useDialogStore, usePreferenceStore, useTagStore } from '@/stores'
+import TmdbInfoDialog from '@/components/Dialogs/TmdbInfoDialog.vue'
 import { AddTorrentParams } from '@/types/qbit/models'
 
 const form = defineModel<AddTorrentParams>({ required: true })
@@ -14,6 +15,7 @@ const appStore = useAppStore()
 const categoryStore = useCategoryStore()
 const preferenceStore = usePreferenceStore()
 const tagStore = useTagStore()
+const dialogStore = useDialogStore()
 
 const contentLayoutOptions = [
   { title: t('common.useGlobalSettings'), value: null },
@@ -110,6 +112,17 @@ function saveFields() {
 }
 
 defineExpose({ saveFields })
+
+function openTmdbDialog() {
+  dialogStore.createDialog(TmdbInfoDialog, {
+    onSubmit: (tags: string[]) => {
+      // 去重并替换已有的 tmdb/season 标签
+      const current = form.value.tags ? [...form.value.tags] : []
+      const filtered = current.filter(t => !t.startsWith('tmdb=') && !t.startsWith('season='))
+      form.value.tags = [...filtered, ...tags]
+    },
+  })
+}
 </script>
 
 <template>
@@ -128,6 +141,13 @@ defineExpose({ saveFields })
         autocomplete="tags">
         <template #prepend>
           <v-icon color="accent"> mdi-tag </v-icon>
+        </template>
+        <template #append-inner>
+          <v-tooltip location="bottom" text="TMDB">
+            <template #activator="{ props }">
+              <v-btn v-bind="props" density="comfortable" icon="mdi-movie-search" variant="text" @click.stop="openTmdbDialog" />
+            </template>
+          </v-tooltip>
         </template>
         <template #no-data>
           <v-list-item>
