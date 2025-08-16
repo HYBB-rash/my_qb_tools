@@ -1,6 +1,6 @@
 import axios, { type AxiosInstance } from 'axios'
 import type ITmdbProvider from './ITmdbProvider'
-import type { SearchTvResponse } from '@/types/tmdb'
+import type { SearchTvResponse, TvDetails } from '@/types/tmdb'
 
 export default class TmdbProvider implements ITmdbProvider {
   private static _instance: TmdbProvider
@@ -40,5 +40,24 @@ export default class TmdbProvider implements ITmdbProvider {
     const { data } = await this.axios.get<SearchTvResponse>('/search/tv', { params })
     return data
   }
-}
 
+  async getTvDetails(tmdbId: number, language: string = 'zh-CN', watchRegion: string = 'CN'): Promise<TvDetails> {
+    const append = [
+      'alternative_titles',
+      'credits',
+      'images',
+      'keywords',
+      'content_ratings',
+      'recommendations',
+      'similar',
+      'videos',
+      'external_ids',
+      'watch/providers',
+      'translations',
+    ].join(',')
+
+    const params = { language, watch_region: watchRegion, append_to_response: append }
+    const { data } = await this.axios.get<TvDetails>(`/tv/${tmdbId}`, { params })
+    return data
+  }
+}
