@@ -49,6 +49,13 @@ def mover_tmdb_86031_s4(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 244808-拔作岛
+@factory.register("tmdb-244808-s1")
+def mover_tmdb_244808_s1(where: Path, to: Path) -> None:
+    mover = default_move(r"青蓝岛")
+    return mover(where, to)
+
+
 def default_move(regex) -> Mover:
     def move(where: Path, to: Path):
         LOGGER.info(f"从: {where}")
