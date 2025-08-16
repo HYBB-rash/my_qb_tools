@@ -1,7 +1,5 @@
 from typing import Any
 
-from share import LOGGER
-from share.result import Err, Ok, Result
 from tools import service
 from tools.dba import (
     LockExpiredError,
@@ -18,6 +16,8 @@ from tools.service import (
     pop_task,
     scrape_and_rename,
 )
+from tools.share import LOGGER
+from tools.share.result import Err, Ok, Result
 
 
 def enqueue(

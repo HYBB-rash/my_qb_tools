@@ -3,7 +3,7 @@ import sqlite3
 from dataclasses import dataclass
 from typing import Any
 
-from share import sqlite_row_to_dict
+from tools.share import sqlite_row_to_dict
 
 """
 meta 模块对应 sqlite 表结构的定义

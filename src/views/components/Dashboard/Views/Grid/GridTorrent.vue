@@ -1,0 +1,100 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useTheme } from 'vuetify'
+import ItemAmount from '@/components/Dashboard/DashboardItems/ItemAmount.vue'
+import ItemBoolean from '@/components/Dashboard/DashboardItems/ItemBoolean.vue'
+import ItemChip from '@/components/Dashboard/DashboardItems/ItemChip.vue'
+import ItemData from '@/components/Dashboard/DashboardItems/ItemData.vue'
+import ItemDateTime from '@/components/Dashboard/DashboardItems/ItemDateTime.vue'
+import ItemDuration from '@/components/Dashboard/DashboardItems/ItemDuration.vue'
+import ItemPercent from '@/components/Dashboard/DashboardItems/ItemPercent.vue'
+import ItemRelativeTime from '@/components/Dashboard/DashboardItems/ItemRelativeTime.vue'
+import ItemSpeed from '@/components/Dashboard/DashboardItems/ItemSpeed.vue'
+import ItemText from '@/components/Dashboard/DashboardItems/ItemText.vue'
+import { DashboardPropertyType } from '@/constants/vuetorrent'
+import { comparators, getTorrentStateColor } from '@/helpers'
+import { useAppStore, useDialogStore, useVueTorrentStore } from '@/stores'
+import { useDashboardStore } from '@/stores/dashboard'
+import { Torrent } from '@/types/vuetorrent'
+import TmdbInfoDialog from '@/components/Dialogs/TmdbInfoDialog.vue'
+
+const props = defineProps<{ torrent: Torrent }>()
+
+defineEmits<{
+  onTorrentClick: [e: { shiftKey: boolean; metaKey: boolean; ctrlKey: boolean }, torrent: Torrent]
+}>()
+
+const { current } = useTheme()
+
+const appStore = useAppStore()
+const dashboardStore = useDashboardStore()
+const vuetorrentStore = useVueTorrentStore()
+const dialogStore = useDialogStore()
+
+const torrentProperties = computed(() => {
+  const ppts = props.torrent.progress === 1 ? vuetorrentStore.doneGridProperties : vuetorrentStore.busyGridProperties
+
+  return ppts.filter(ppt => ppt.active && appStore.isFeatureAvailable(ppt.qbitVersion)).sort((a, b) => comparators.numeric.asc(a.order, b.order))
+})
+
+function getComponent(type: DashboardPropertyType) {
+  switch (type) {
+    case DashboardPropertyType.AMOUNT:
+      return ItemAmount
+    case DashboardPropertyType.BOOLEAN:
+      return ItemBoolean
+    case DashboardPropertyType.CHIP:
+      return ItemChip
+    case DashboardPropertyType.DATA:
+      return ItemData
+    case DashboardPropertyType.DATETIME:
+      return ItemDateTime
+    case DashboardPropertyType.DURATION:
+      return ItemDuration
+    case DashboardPropertyType.PERCENT:
+      return ItemPercent
+    case DashboardPropertyType.RELATIVE:
+      return ItemRelativeTime
+    case DashboardPropertyType.SPEED:
+      return ItemSpeed
+    case DashboardPropertyType.TEXT:
+    default:
+      return ItemText
+  }
+}
+
+const isTorrentSelected = computed(() => dashboardStore.isTorrentInSelection(props.torrent.hash))
+const stateColor = computed(() => current.value.colors[getTorrentStateColor(props.torrent.state)])
+
+function openTmdbDialog(t: Torrent) {
+  dialogStore.createDialog(TmdbInfoDialog, { hash: t.hash, initialName: t.name })
+}
+</script>
+
+<template>
+  <v-card
+    class="cursor-pointer"
+    :style="`border-left: 6px solid ${stateColor}`"
+    height="100%"
+    :color="isTorrentSelected ? `${getTorrentStateColor(torrent.state)}-darken-3` : undefined"
+    @click="$emit('onTorrentClick', $event, torrent)">
+    <v-card-title class="text-wrap text-subtitle-1 pt-1 pb-0">
+      {{ torrent.name }}
+    </v-card-title>
+    <v-card-text>
+      <div class="d-flex flex-gap flex-wrap">
+        <template v-for="ppt in torrentProperties">
+          <component :is="getComponent(ppt.type)" v-if="ppt.props" :key="ppt.name" :torrent="torrent" v-bind="ppt.props" />
+        </template>
+        <div class="d-flex flex-column">
+          <div class="text-caption text-grey">
+            {{ $t('common.actions') }}
+          </div>
+          <div>
+            <v-btn prepend-icon="mdi-database-plus" variant="elevated" color="accent" class="ml-2" @click="openTmdbDialog(torrent)"> {{ $t('common.setTmdbInfo') }} </v-btn>
+          </div>
+        </div>
+      </div>
+    </v-card-text>
+  </v-card>
+</template>

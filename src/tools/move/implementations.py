@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from share import LOGGER, Factory, find_files_by_regex
 from tools.move.interfaces import Mover
+from tools.share import LOGGER, Factory, find_files_by_regex
 
 factory: Factory[Mover] = Factory()
 
