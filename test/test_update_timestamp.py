@@ -1,7 +1,7 @@
 import time
 
-from share import LOGGER
 from tools.dba import get_task_by_id, insert_task, update_task_status
+from tools.share import LOGGER
 
 
 def test_updated_at_increases_and_status_changes():
@@ -31,7 +31,9 @@ def test_updated_at_increases_and_status_changes():
     LOGGER.info(f"更新后 updated_at: {after_ts}")
 
     # 5) 断言：时间戳应变大，状态应为 1
-    assert after_ts > before_ts, f"updated_at 未更新: before={before_ts}, after={after_ts}"
+    assert after_ts > before_ts, (
+        f"updated_at 未更新: before={before_ts}, after={after_ts}"
+    )
     assert task_after.status == 1, f"状态未更新为 1，当前: {task_after.status}"
 
     LOGGER.info("OK: updated_at 已随着状态变化更新")

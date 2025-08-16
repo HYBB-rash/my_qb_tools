@@ -7,11 +7,11 @@ from typing import Any
 import requests
 from dotenv import load_dotenv
 
-from share import LOGGER, UnknownKeyError
-from share.result import Err, Ok, Result
 from tools import dba
 from tools.meta import Cfg, Task
 from tools.move import MOVE_FACTORY, MoveFunctionNotFound
+from tools.share import LOGGER, UnknownKeyError
+from tools.share.result import Err, Ok, Result
 
 BASE = "https://api.themoviedb.org/3"
 

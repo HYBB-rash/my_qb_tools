@@ -8,9 +8,9 @@ from typing import Any
 
 from dotenv import load_dotenv
 
-from share import LOGGER, format_timestamp, sqlite_row_to_dict
-from share.result import Ok, Result, err
 from tools.meta import Cfg, Task
+from tools.share import LOGGER, format_timestamp, sqlite_row_to_dict
+from tools.share.result import Ok, Result, err
 
 load_dotenv()
 DB_PATH = Path("data")

@@ -1,5 +1,5 @@
-from share.result import Ok
 from tools.dba import get_lock, release_lock
+from tools.share.result import Ok
 
 
 def test_lock_acquire_and_release():

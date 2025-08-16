@@ -1,0 +1,267 @@
+{
+  "common": {
+    "cancel": "Скасувати",
+    "close": "Закрити",
+    "delete": "Видалити",
+    "disable": "Вимкнути",
+    "disabled": "Вимкнуто",
+    "edit": "Редагувати",
+    "emptyList": "Тут досі нічого немає!",
+    "global_value": "Глобальні значення",
+    "NA": "Недоступно",
+    "no": "Ні",
+    "none": "(Немає)",
+    "ok": "Гаразд",
+    "pause": "Пауза",
+    "refresh": "Оновити",
+    "resume": "Відновити",
+    "save": "Зберегти",
+    "search": "Пошук",
+    "selectAll": "Виділити все",
+    "selectNone": "Зняти виділення",
+    "useGlobalSettings": "Використовувати глобальні налаштування",
+    "yes": "Так"
+  },
+  "constants": {
+    "addStopped": {
+      "always": "Завжди",
+      "never": "Ніколи",
+      "title": "Додати призупинені"
+    },
+    "auto_delete_mode": {
+      "always": "Завжди",
+      "never": "Ніколи"
+    },
+    "bittorrentProtocols": {
+      "tcp": "TCP",
+      "tcp_utp": "TCP та μTP",
+      "utp": "μTP"
+    },
+    "connectionStatus": {
+      "connected": "Підключено",
+      "disconnected": "Відключено",
+      "firewalled": "Захищено",
+      "unknown": "Невідомо"
+    },
+    "contentLayout": {
+      "nosubfolder": "Видалити підпапку",
+      "original": "Поточний",
+      "subfolder": "Створити підпапку",
+      "title": "Як є"
+    },
+    "diskIoMode": {
+      "disableOsCache": "Вимкнути кеш ОС",
+      "enableOsCache": "Ввімкнути кеш ОС",
+      "writeThrough": "Наскрізний запис (libtorrent >= 2.0.6)"
+    },
+    "diskIoType": {
+      "default": "По замовчуванню",
+      "memoryMappedFiles": "Файли розмітки пам'яті",
+      "posixCompliant": "POSIX-сумісні"
+    },
+    "encryption": {
+      "forceOff": "Вимкнути шифрування",
+      "forceOn": "Вимагає шифрування",
+      "preferEncryption": "Дозволити шифрування"
+    },
+    "file_log_age_type": {
+      "days": "День | Дня | Днів",
+      "months": "Місяць| Місяці | Місяців",
+      "years": "Рік | Роки | Років"
+    },
+    "file_priority": {
+      "high": "Високий",
+      "max": "Максимальний",
+      "mixed": "Змішаний",
+      "normal": "Нормальний",
+      "unwanted": "Низький"
+    },
+    "monitoredFolderSaveLocation": {
+      "defaultSavePath": "Шлях збереження за замовчування",
+      "monitoredFolder": "Тека, яка відслідковується",
+      "other": "Інше"
+    },
+    "proxy_type": {
+      "http": "HTTP",
+      "socks4": "SOCKS4",
+      "socks5": "SOCKS5"
+    },
+    "scheduler": {
+      "everyDay": "Кожен день",
+      "everyFriday": "Кожну п'ятницю",
+      "everyMonday": "Кожен понеділок",
+      "everySaturday": "Кожну суботу",
+      "everySunday": "Кожну неділю",
+      "everyThursday": "Кожен четвер",
+      "everyTuesday": "Кожен вівторок",
+      "everyWednesday": "Кожну середу",
+      "everyWeekday": "По будням",
+      "everyWeekend": "По вихідним"
+    },
+    "shareLimitAction": {
+      "removeTorrent": "Видалити торрент",
+      "removeTorrentAndFiles": "Видалити торрент та файли",
+      "stopTorrent": "Зупинити торрент",
+      "torrentSuperseeding": "Увімкнути суперсід для цього торренту"
+    },
+    "stopCondition": {
+      "filesChecked": "Файлів перевірено",
+      "metadataReceived": "Метадані отримано",
+      "none": "Немає",
+      "title": "Умови зупинки торренту"
+    },
+    "themes": {
+      "dark": {
+        "legacy": "Застаріла",
+        "redesigned": "Оновлена"
+      },
+      "light": {
+        "legacy": "Застаріла",
+        "redesigned": "Оновлена"
+      }
+    },
+    "titleOptions": {
+      "custom": "Користувацькі",
+      "default": "По замовчуванню",
+      "first_torrent_speed": "Швидкість першого торренту",
+      "global_speed": "Загальна швидкість"
+    },
+    "trackerStatus": {
+      "disabled": "Вимкнуто",
+      "not_working": "Не працюють",
+      "not_yet_contacted": "Не було зв'язку",
+      "updating": "Оновлюється",
+      "working": "Працює"
+    },
+    "uploadChokingAlgorithm": {
+      "antiLeech": "Анти-ліч",
+      "fastestUpload": "Примусова роздача",
+      "roundRobin": "Збалансований"
+    },
+    "uploadSlotsBehavior": {
+      "fixedSlots": "Фіксовані слоти",
+      "uploadRateBased": "Роздача на основі швидкості"
+    },
+    "utpTcpMixedMode": {
+      "peerProportional": "Пропорційно до пірів (обмежує TCP) ",
+      "preferTcp": "Надавати перевагу TCP"
+    }
+  },
+  "dashboard": {
+    "displayMode": {
+      "grid": "Сітка",
+      "list": "Список",
+      "table": "Таблиця",
+      "title": "Режим відображення"
+    },
+    "not_complete": "Не було завершено",
+    "right_click": {
+      "advanced": {
+        "auto_tmm": "Автоматичне управління торрентами",
+        "download_path": "Встановити шлях завантаження",
+        "f_l_prio": "Пріоритет першої/останньої частини",
+        "reannounce": "Примусове повторне оголошення",
+        "recheck": "Примусова перевірка",
+        "rename": "Перейменувати торрент",
+        "save_path": "Встановити шлях збереження",
+        "seq_dl": "Послідовне завантаження",
+        "title": "Розширені"
+      },
+      "category": {
+        "clear": "(Очистити категорію)",
+        "disabled_title": "Без категорій",
+        "title": "Встановити категорію"
+      },
+      "copy": {
+        "hash": "Хеш",
+        "magnet": "Магнет",
+        "name": "Назва",
+        "title": "Копіювати"
+      },
+      "export": "Експортувати торрент | Експортувати торренти",
+      "info": "Показати інформацію",
+      "priority": {
+        "bottom": "Донизу",
+        "decrease": "Зменшити",
+        "increase": "Збільшити",
+        "title": "Встановити позицію в черзі",
+        "top": "Нагору"
+      },
+      "speed_limit": {
+        "download": "Встановіть ліміт завантаження",
+        "share": "Встановити ліміт частки",
+        "title": "Встановити обмеження швидкості",
+        "upload": "Встановити ліміт роздачі"
+      },
+      "tags": {
+        "clear_all": "Видалити все",
+        "disabled_title": "Без тегів",
+        "title": "Встановити теги"
+      },
+      "top": {
+        "delete": "Видалити",
+        "force_resume": "Примусове відновлення",
+        "pause": "Пауза",
+        "resume": "Відновити"
+      }
+    },
+    "searchInputLabel": "Пошук",
+    "selectAll": "(Скасувати)виділити все (Ctrl + A)",
+    "selectedTorrentsCount": "Немає торрента | {count} з {total} торентів ({size}) | {count} з {total} торентів ({size})",
+    "sortLabel": "Сортувати за",
+    "toggleSearchFilter": "Перемкнути фільтр пошуку",
+    "toggleSelectMode": "Перемкнути режим вибору",
+    "toggleSortOrder": "Зворотній порядок сортування",
+    "torrentsCount": "Без торрента | {n} торренти | {n} торрентів"
+  },
+  "dialogs": {
+    "add": {
+      "cookie": "Куки",
+      "cookie_placeholder": "name1=value1; name2=value2; ...",
+      "drop_label": "Перетягніть торрент-файли або посилання сюди",
+      "file_overflow": "+ {n} більше"
+    }
+  },
+  "navbar": {
+    "side": {
+      "filters": {
+        "state": {
+          "active": "Активні",
+          "error": "Збій"
+        }
+      },
+      "speed_graph": {
+        "upload_limit_label": "Ліміт роздачі"
+      }
+    }
+  },
+  "torrent": {
+    "properties": {
+      "avg_download_speed": "Середня швидкість завантаження",
+      "avg_upload_speed": "Середня швидкість роздачі",
+      "seeding_time": "Час сідування",
+      "seeding_time_limit": "Обмеження часу сідування"
+    },
+    "state": {
+      "checking_resume_data": "Перевірка для відновлення",
+      "dl_forced": "[Ф] Завантаження",
+      "dl_queued": "В черзі (ЗВ)",
+      "dl_stalled": "Завис",
+      "downloading": "Завантаження",
+      "error": "Збій",
+      "forced_meta_download": "[Ф] Метадані",
+      "meta_download": "Метадані",
+      "missing_files": "Файли відсутні",
+      "moving": "Переміщаю..",
+      "ul_forced": "[Ф] Роздача",
+      "ul_queued": "В черзі (РД)",
+      "ul_stalled": "Сідування",
+      "unknown": "Невідомо",
+      "uploading": "Роздача"
+    }
+  },
+  "units": {
+    "minutes": "хвилина | хвилини | хвилин",
+    "seconds": "секунда | секунди | секунд"
+  }
+}
