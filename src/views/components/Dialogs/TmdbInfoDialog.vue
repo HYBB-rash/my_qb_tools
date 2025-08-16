@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
-import { useWindowSize } from '@vueuse/core'
+import { computed, onMounted, ref, watch } from 'vue'
+import { useWindowSize, useDebounceFn } from '@vueuse/core'
 import { useDialog } from '@/composables'
 import { useMaindataStore, useTagStore, useTorrentStore } from '@/stores'
 import tmdb from '@/services/tmdb'
@@ -39,16 +39,27 @@ function posterUrl(path: string | null) {
   return path ? `${cdnBase}/${posterSize}${path}` : ''
 }
 
-async function search() {
-  const q = keyword.value.trim()
-  if (!q) return
+let searchToken = 0
+async function doSearch(q: string) {
+  if (!q) {
+    results.value = []
+    return
+  }
+  const myToken = ++searchToken
   searching.value = true
   try {
     const data = await tmdb.searchTv(q, 1, 'zh-CN')
+    if (myToken !== searchToken) return
     results.value = data.results
   } finally {
-    searching.value = false
+    if (myToken === searchToken) searching.value = false
   }
+}
+
+const debouncedSearch = useDebounceFn((q: string) => void doSearch(q), 500)
+
+async function search() {
+  await doSearch(keyword.value.trim())
 }
 
 async function pick(item: TvSearchResult) {
@@ -137,6 +148,17 @@ onMounted(async () => {
   } finally {
     detailsLoading.value = false
   }
+})
+
+watch(keyword, newVal => {
+  if (!showSearch.value) return
+  const q = (newVal || '').trim()
+  if (!q) {
+    results.value = []
+    searching.value = false
+    return
+  }
+  debouncedSearch(q)
 })
 
 async function clearExisting() {
