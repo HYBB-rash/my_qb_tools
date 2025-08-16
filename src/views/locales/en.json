@@ -24,7 +24,9 @@
     "selectNone": "Select None",
     "submit": "Submit",
     "useGlobalSettings": "Use Global Settings",
-    "yes": "Yes"
+    "yes": "Yes",
+    "actions": "Actions",
+    "setTmdbInfo": "Set TMDB Info"
   },
   "constants": {
     "addStopped": {

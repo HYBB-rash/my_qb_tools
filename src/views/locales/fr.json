@@ -21,7 +21,9 @@
     "selectAll": "Tout sélectionner",
     "selectNone": "Tout désélectionner",
     "useGlobalSettings": "Utiliser les paramètres globaux",
-    "yes": "Oui"
+    "yes": "Oui",
+    "actions": "Actions",
+    "setTmdbInfo": "Configurer TMDB"
   },
   "constants": {
     "addStopped": {

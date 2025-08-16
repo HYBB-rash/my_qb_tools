@@ -85,7 +85,7 @@ function openTmdbDialog(t: TorrentType) {
           <th v-else-if="header.key === 'multipleSelectionCheckbox'" />
           <Header v-else :title="header.title!" :sort-key="header.key!" @on-header-click="onHeaderClick(header.key as keyof Torrent)" />
         </template>
-        <Header :title="'Action'" :sort-key="''" @on-header-click="() => {}" />
+        <Header :title="t('common.actions')" :sort-key="''" @on-header-click="() => {}" />
       </tr>
     </template>
 
@@ -121,7 +121,7 @@ function openTmdbDialog(t: TorrentType) {
         </td>
         <TableTorrent :torrent="torrent" />
         <td class="text-no-wrap">
-          <v-btn class="ml-2" size="small" variant="text" prepend-icon="mdi-database-plus" @click.stop="openTmdbDialog(torrent)"> 设定tmdb信息 </v-btn>
+          <v-btn class="ml-2" size="small" variant="text" prepend-icon="mdi-database-plus" @click.stop="openTmdbDialog(torrent)"> {{ t('common.setTmdbInfo') }} </v-btn>
         </td>
       </tr>
     </template>

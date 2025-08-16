@@ -22,7 +22,9 @@
     "selectAll": "全选",
     "selectNone": "取消选择",
     "useGlobalSettings": "使用全局设置",
-    "yes": "是"
+    "yes": "是",
+    "actions": "操作",
+    "setTmdbInfo": "设定 TMDB 信息"
   },
   "constants": {
     "addStopped": {

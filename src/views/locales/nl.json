@@ -7,7 +7,9 @@
     "emptyList": "Niets te zien hier!",
     "none": "(Geen)",
     "save": "Opslaan",
-    "selectAll": "Alles selecteren"
+    "selectAll": "Alles selecteren",
+    "actions": "Acties",
+    "setTmdbInfo": "TMDB-info instellen"
   },
   "constants": {
     "bittorrentProtocols": {

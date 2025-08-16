@@ -23,7 +23,9 @@
     "selectNone": "Снять выбор",
     "submit": "Отправить",
     "useGlobalSettings": "Использовать глобальные настройки",
-    "yes": "Да"
+    "yes": "Да",
+    "actions": "Действия",
+    "setTmdbInfo": "Настроить TMDB"
   },
   "constants": {
     "addStopped": {

@@ -13,7 +13,9 @@
     "search": "Cerca",
     "selectAll": "Seleziona Tutto",
     "useGlobalSettings": "Usa Impostazioni Globali",
-    "yes": "Sì"
+    "yes": "Sì",
+    "actions": "Azioni",
+    "setTmdbInfo": "Imposta info TMDB"
   },
   "constants": {
     "addStopped": {

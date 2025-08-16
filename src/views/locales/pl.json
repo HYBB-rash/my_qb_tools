@@ -18,7 +18,9 @@
     "selectAll": "Zaznacz wszystko",
     "selectNone": "Wybierz Brak",
     "useGlobalSettings": "Użyj ustawień globalnych",
-    "yes": "Tak"
+    "yes": "Tak",
+    "actions": "Akcje",
+    "setTmdbInfo": "Ustaw informacje TMDB"
   },
   "constants": {
     "addStopped": {

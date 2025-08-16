@@ -17,7 +17,9 @@
     "selectAll": "Vybrat vše",
     "selectNone": "Nic nevybrat",
     "useGlobalSettings": "Použít globální nastavení",
-    "yes": "Ano"
+    "yes": "Ano",
+    "actions": "Akce",
+    "setTmdbInfo": "Nastavit TMDB"
   },
   "constants": {
     "addStopped": {

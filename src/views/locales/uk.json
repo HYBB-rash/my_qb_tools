@@ -20,7 +20,9 @@
     "selectAll": "Виділити все",
     "selectNone": "Зняти виділення",
     "useGlobalSettings": "Використовувати глобальні налаштування",
-    "yes": "Так"
+    "yes": "Так",
+    "actions": "Дії",
+    "setTmdbInfo": "Налаштувати TMDB"
   },
   "constants": {
     "addStopped": {

@@ -20,7 +20,9 @@
     "selectAll": "Tümünü Seç",
     "selectNone": "Hiçbirini Seçme",
     "useGlobalSettings": "Genel Ayarları Kullan",
-    "yes": "Evet"
+    "yes": "Evet",
+    "actions": "Eylemler",
+    "setTmdbInfo": "TMDB Bilgilerini Ayarla"
   },
   "constants": {
     "addStopped": {

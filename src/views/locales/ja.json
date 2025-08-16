@@ -20,7 +20,9 @@
     "selectAll": "すべて選択",
     "selectNone": "選択解除",
     "useGlobalSettings": "グローバル設定を使用する",
-    "yes": "はい"
+    "yes": "はい",
+    "actions": "アクション",
+    "setTmdbInfo": "TMDB 情報を設定"
   },
   "constants": {
     "addStopped": {

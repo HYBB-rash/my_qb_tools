@@ -88,10 +88,10 @@ function openTmdbDialog(t: Torrent) {
         </template>
         <div class="d-flex flex-column">
           <div class="text-caption text-grey">
-            {{ $t('Action') }}
+            {{ $t('common.actions') }}
           </div>
           <div>
-            <v-btn prepend-icon="mdi-database-plus" variant="elevated" color="accent" class="ml-2" @click="openTmdbDialog(torrent)"> 设定tmdb信息 </v-btn>
+            <v-btn prepend-icon="mdi-database-plus" variant="elevated" color="accent" class="ml-2" @click="openTmdbDialog(torrent)"> {{ $t('common.setTmdbInfo') }} </v-btn>
           </div>
         </div>
       </div>

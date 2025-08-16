@@ -18,7 +18,9 @@
     "selectAll": "모두 선택",
     "selectNone": "선택 안함",
     "useGlobalSettings": "전역 설정 사용",
-    "yes": "예"
+    "yes": "예",
+    "actions": "작업",
+    "setTmdbInfo": "TMDB 정보 설정"
   },
   "constants": {
     "addStopped": {

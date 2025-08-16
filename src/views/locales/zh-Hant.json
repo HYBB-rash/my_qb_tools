@@ -22,7 +22,9 @@
     "selectAll": "選擇全部",
     "selectNone": "取消選擇全部",
     "useGlobalSettings": "使用全域設定",
-    "yes": "是"
+    "yes": "是",
+    "actions": "動作",
+    "setTmdbInfo": "設定 TMDB 資訊"
   },
   "constants": {
     "addStopped": {

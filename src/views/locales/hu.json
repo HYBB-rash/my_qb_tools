@@ -18,7 +18,9 @@
     "selectAll": "Összes kiválasztása",
     "selectNone": "Egyik sem",
     "useGlobalSettings": "Globális beállítások használata",
-    "yes": "Igen"
+    "yes": "Igen",
+    "actions": "Műveletek",
+    "setTmdbInfo": "TMDB-információk beállítása"
   },
   "constants": {
     "addStopped": {
