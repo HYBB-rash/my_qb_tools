@@ -56,6 +56,13 @@ def mover_tmdb_244808_s1(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 137065-明日方舟
+@factory.register("tmdb-137065-s3")
+def mover_tmdb_137065_s3(where: Path, to: Path) -> None:
+    mover = default_move(r"Arknights_ Rise from Ember")
+    return mover(where, to)
+
+
 def default_move(regex) -> Mover:
     def move(where: Path, to: Path):
         LOGGER.info(f"从: {where}")
