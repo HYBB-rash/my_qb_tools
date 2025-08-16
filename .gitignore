@@ -1,6 +1,10 @@
 .venv
 *.egg-info
 .env
+# Ignore all env variants to prevent accidental secret commits
+.env.*
+.env*.local
+*.env
 __pycache__
 
 app.db
