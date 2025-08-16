@@ -1,4 +1,4 @@
-from share import Factory, UnknownKeyError
+from tools.share import Factory, UnknownKeyError
 
 
 def test_factory_register_and_create():
