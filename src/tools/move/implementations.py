@@ -80,6 +80,18 @@ def mover_tmdb_244808_s1(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 281058-沉默·魔女 第1季
+@factory.register("tmdb-281058-s1")
+def mover_tmdb_281058_s1(where: Path, to: Path) -> None:
+    # 常见别名：中文/英文
+    # CN: 沉默·魔女 / 沉默魔女 / 沉默魔女的秘密（兼容不同间隔符：· ・ ･，以及可无分隔符）
+    # EN: Silent Witch
+    sep = r"[\s._-]*"
+    pattern = rf"(?i)(沉默[·･・]?\s*魔女|沉默魔女的秘密|Silent{sep}Witch)"
+    mover = default_move(pattern)
+    return mover(where, to)
+
+
 # 137065-明日方舟
 @factory.register("tmdb-137065-s3")
 def mover_tmdb_137065_s3(where: Path, to: Path) -> None:
