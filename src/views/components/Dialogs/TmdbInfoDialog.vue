@@ -235,6 +235,11 @@ const dialogHeight = computed(() => Math.round(winHeight.value * 0.618))
                 :label="`第 ${s.season_number} 季（${s.episode_count} 集）`"
                 :value="s.season_number" />
             </v-radio-group>
+
+            <!-- 规则预览 -->
+            <div class="text-medium-emphasis mt-2">
+              生成规则：tmdb-{{ selectedId || '' }}-s{{ selectedSeason || '' }} ({{ titleToShow }})
+            </div>
           </div>
           <div v-else class="text-medium-emphasis">未能加载详情，请返回重试。</div>
         </template>
