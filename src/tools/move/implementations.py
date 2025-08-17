@@ -141,3 +141,23 @@ def hardlink(where: Path, to: Path) -> None:
 
 
 # C:\Users\Herman\AppData\Local\Programs\tinyMediaManagerV5\tinyMediaManagerCMD.exe
+
+
+# 278196-光死去的夏天 第1季
+@factory.register("tmdb-278196-s1")
+def mover_tmdb_278196_s1(where: Path, to: Path) -> None:
+    # 常见别名：中文/日文/英文/罗马字
+    # CN: 光死去的夏天 / 光死去的夏日（兼容“夏天/夏日”）
+    # JP: 光が死んだ夏
+    # EN: The Summer Hikaru Died
+    # Romaji: Hikari/Hikaru ga Shinda Natsu
+    # 允许单词之间出现空格/点/下划线/连字符
+    sep = r"[\s._-]*"
+    pattern = (
+        rf"(?i)(光が死んだ夏|光死去的夏[天日]|"
+        rf"The{sep}Summer{sep}Hikaru{sep}Died|"
+        rf"Hikari{sep}ga{sep}Shinda{sep}Natsu|"
+        rf"Hikaru{sep}ga{sep}Shinda{sep}Natsu)"
+    )
+    mover = default_move(pattern)
+    return mover(where, to)
