@@ -84,7 +84,7 @@ async function submit() {
 
   const id = selectedId.value
   const s = selectedSeason.value
-  const rawTitle = details.value?.name || initialName || ''
+  const rawTitle = details.value?.name || props.initialName || ''
   const safeTitle = rawTitle.replace(/[\n\r,]/g, ' ').trim()
   const tmdbTag = `tmdb=${id}-${safeTitle}`
   const seasonTag = `season=${s}`
@@ -107,7 +107,7 @@ function close() {
 
 const showSearch = computed(() => !selectedId.value)
 const firstAirDate = computed(() => details.value?.first_air_date || '')
-const titleToShow = computed(() => details.value?.name || initialName || '')
+const titleToShow = computed(() => details.value?.name || props.initialName || '')
 const overview = computed(() => details.value?.overview || '')
 const detailPoster = computed(() => posterUrl(details.value?.poster_path ?? null))
 const seasonOptions = computed(() => (details.value?.seasons || []).filter(s => s.season_number > 0))
@@ -182,7 +182,7 @@ const dialogWidth = computed(() => Math.round(winWidth.value * 0.618))
     <v-card>
       <v-card-title>设定 TMDB 信息</v-card-title>
       <v-card-text>
-        <div v-if="!hasExistingInfo" class="text-medium-emphasis mb-3">{{ initialName }}</div>
+        <div v-if="!hasExistingInfo" class="text-medium-emphasis mb-3">{{ props.initialName }}</div>
 
         <!-- 搜索视图 -->
         <template v-if="showSearch">
@@ -231,7 +231,7 @@ const dialogWidth = computed(() => Math.round(winWidth.value * 0.618))
             <v-row dense class="ma-0 mb-2" align="start">
               <v-col cols="12">
                 <div class="text-medium-emphasis mb-2"><strong>首播：</strong> {{ firstAirDate || '未知' }}</div>
-                <div v-if="hasExistingInfo && initialName" class="text-medium-emphasis"><strong>源文件名：</strong> {{ initialName }}</div>
+                <div v-if="hasExistingInfo && props.initialName" class="text-medium-emphasis"><strong>源文件名：</strong> {{ props.initialName }}</div>
               </v-col>
               <v-col cols="12" class="d-flex mb-2">
                 <v-img :src="detailPoster" :aspect-ratio="2/3" class="poster rounded" />

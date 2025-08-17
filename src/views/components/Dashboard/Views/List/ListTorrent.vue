@@ -16,7 +16,6 @@ import { comparators, getTorrentStateColor } from '@/helpers'
 import { useAppStore, useDashboardStore, useDialogStore, useVueTorrentStore } from '@/stores'
 import { Torrent } from '@/types/vuetorrent'
 import TmdbInfoDialog from '@/components/Dialogs/TmdbInfoDialog.vue'
-import { pt_PT } from '@faker-js/faker/.'
 
 const props = defineProps<{ torrent: Torrent }>()
 

@@ -58,6 +58,7 @@ export default class MockTmdbProvider implements ITmdbProvider {
   }
 
   async getTvDetails(tmdbId: number, language: string = 'zh-CN', watchRegion: string = 'CN'): Promise<TvDetails> {
+    void watchRegion
     // Return a small stable payload that matches the TvDetails type
     return {
       id: tmdbId,

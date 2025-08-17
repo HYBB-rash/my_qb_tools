@@ -97,8 +97,9 @@ it('TmdbProvider.getTvDetails calls axios with correct route and params and retu
   expect(res.id).toBe(123)
   expect(res.name).toBe('Demo Show')
   expect(h.get).toHaveBeenCalledTimes(1)
-  expect(h.get.mock.calls[0][0]).toBe('/tv/123')
-  const params = h.get.mock.calls[0][1].params
+  const getCalls: any[] = h.get.mock.calls as any
+  expect(getCalls[0][0]).toBe('/tv/123')
+  const params = getCalls[0][1].params
   expect(params.language).toBe('en-US')
   expect(params.watch_region).toBe('US')
   expect(typeof params.append_to_response).toBe('string')
@@ -107,7 +108,8 @@ it('TmdbProvider.getTvDetails calls axios with correct route and params and retu
   expect(params.append_to_response).toContain('watch/providers')
 
   expect(h.create).toHaveBeenCalledTimes(1)
-  const arg = h.create.mock.calls[0][0]
+  const createCalls: any[] = h.create.mock.calls as any
+  const arg = createCalls[0][0]
   expect(arg.baseURL).toBe('https://api.themoviedb.org/3')
   expect(arg.headers.Accept).toBe('application/json')
   expect(arg.headers.Authorization).toBe('Bearer FAKE_TOKEN')

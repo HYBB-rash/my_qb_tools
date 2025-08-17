@@ -47,12 +47,13 @@ it('TmdbProvider.searchTv calls axios with correct route and params', async () =
   expect(res.total_results).toBe(1)
   expect(res.results[0].name).toBe('Demo Show')
   expect(h.get).toHaveBeenCalledTimes(1)
-  expect(h.get.mock.calls[0][0]).toBe('/search/tv')
-  expect(h.get.mock.calls[0][1]).toMatchObject({ params: { query: 'demo', page: 1, language: 'zh-CN', include_adult: false } })
+  const getCalls: any[] = h.get.mock.calls as any
+  expect(getCalls[0][0]).toBe('/search/tv')
+  expect(getCalls[0][1]).toMatchObject({ params: { query: 'demo', page: 1, language: 'zh-CN', include_adult: false } })
   expect(h.create).toHaveBeenCalledTimes(1)
-  const arg = h.create.mock.calls[0][0]
+  const createCalls: any[] = h.create.mock.calls as any
+  const arg = createCalls[0][0]
   expect(arg.baseURL).toBe('https://api.themoviedb.org/3')
   expect(arg.headers.Accept).toBe('application/json')
   expect(arg.headers.Authorization).toBe('Bearer FAKE_TOKEN')
 })
-

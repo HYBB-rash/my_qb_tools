@@ -11,7 +11,6 @@ import TagsAndCategories from '@/components/TorrentDetail/TagsAndCategories.vue'
 import Trackers from '@/components/TorrentDetail/Trackers.vue'
 import { useI18nUtils } from '@/composables'
 import { useContentStore, useDialogStore, useGlobalStore, useTorrentDetailStore, useTorrentStore } from '@/stores'
-import TmdbInfoDialog from '@/components/Dialogs/TmdbInfoDialog.vue'
 
 const router = useRouter()
 const { t } = useI18nUtils()
