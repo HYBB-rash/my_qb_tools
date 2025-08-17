@@ -1,0 +1,15 @@
+<svg width="800" height="450" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0%" stop-color="#eef2f7" />
+      <stop offset="100%" stop-color="#e2e8f0" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="800" height="450" fill="url(#g)"/>
+  <rect x="40" y="40" width="720" height="370" rx="12" ry="12" fill="#ffffff" stroke="#cbd5e1" />
+  <rect x="70" y="90" width="500" height="48" rx="8" fill="#f1f5f9" stroke="#cbd5e1" />
+  <circle cx="595" cy="114" r="20" fill="#fef3c7" stroke="#f59e0b" />
+  <text x="70" y="80" font-size="18" font-family="Arial, Helvetica, sans-serif" fill="#334155">RSS 规则 · 种子参数 · 标签</text>
+  <text x="70" y="120" font-size="14" font-family="Arial, Helvetica, sans-serif" fill="#475569">在此处点击右侧 TMDB 图标打开选择器</text>
+  <text x="40" y="420" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#64748b">占位图：RSS 规则中的 TMDB 选择器</text>
+</svg>

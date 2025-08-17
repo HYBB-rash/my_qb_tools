@@ -1,0 +1,22 @@
+<svg width="800" height="450" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g2" x1="0" x2="1">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#e2e8f0" />
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="800" height="450" fill="url(#g2)"/>
+  <rect x="60" y="50" width="680" height="350" rx="12" ry="12" fill="#ffffff" stroke="#cbd5e1" />
+  <text x="80" y="85" font-size="20" font-family="Arial, Helvetica, sans-serif" fill="#334155">设置 TMDB 信息</text>
+  <rect x="80" y="110" width="200" height="300" fill="#e5e7eb" stroke="#cbd5e1"/>
+  <text x="95" y="270" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#64748b">海报</text>
+  <rect x="300" y="130" width="420" height="40" rx="6" fill="#f1f5f9" stroke="#cbd5e1" />
+  <text x="305" y="155" font-size="14" font-family="Arial, Helvetica, sans-serif" fill="#475569">首播：2024-01-01</text>
+  <rect x="300" y="180" width="420" height="120" rx="6" fill="#f8fafc" stroke="#e2e8f0" />
+  <text x="305" y="205" font-size="14" font-family="Arial, Helvetica, sans-serif" fill="#475569">简介……（此处显示概览）</text>
+  <text x="300" y="320" font-size="14" font-family="Arial, Helvetica, sans-serif" fill="#334155">选择季度：</text>
+  <rect x="380" y="305" width="44" height="24" rx="12" fill="#e2e8f0" /><text x="393" y="322" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#334155">S1</text>
+  <rect x="430" y="305" width="44" height="24" rx="12" fill="#e2e8f0" /><text x="443" y="322" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#334155">S2</text>
+  <rect x="480" y="305" width="44" height="24" rx="12" fill="#e2e8f0" /><text x="493" y="322" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#334155">S3</text>
+  <text x="60" y="420" font-size="12" font-family="Arial, Helvetica, sans-serif" fill="#64748b">占位图：TMDB 信息对话框</text>
+</svg>

@@ -51,9 +51,9 @@
 
 下列为占位示意，替换为你的实际截图：
 
-![RSS 规则中的 TMDB 选择器](docs/images/rss-tmdb-button.png)
+![RSS 规则中的 TMDB 选择器](docs/images/rss-tmdb-button.svg)
 
-![TMDB 信息对话框](docs/images/tmdb-dialog.png)
+![TMDB 信息对话框](docs/images/tmdb-dialog.svg)
 
 ## 版本
 
