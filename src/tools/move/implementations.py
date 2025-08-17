@@ -6,6 +6,17 @@ from tools.share import LOGGER, Factory, find_files_by_regex
 factory: Factory[Mover] = Factory()
 
 
+# 240411-胆大党 第1季
+@factory.register("tmdb-240411-s1")
+def mover_tmdb_240411_s1(where: Path, to: Path) -> None:
+    # 常见别名：中文/日文/英文
+    # CN: 胆大党
+    # JP: ダンダダン
+    # EN: Dandadan / DAN DA DAN
+    mover = default_move(r"(?i)(胆大党|ダンダダン|dan\s*da\s*dan|dandadan)")
+    return mover(where, to)
+
+
 # 246862-新·吊带袜天使 第1季
 @factory.register("tmdb-246862-s1")
 def mover_tmdb_246862_s1(where: Path, to: Path) -> None:
