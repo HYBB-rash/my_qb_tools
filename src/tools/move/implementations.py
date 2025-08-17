@@ -72,6 +72,16 @@ def mover_tmdb_123249_s1(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 213830-转生为第七王子，随心所欲的魔法学习之路 第1季
+@factory.register("tmdb-213830-s1")
+def mover_tmdb_213830_s1(where: Path, to: Path) -> None:
+    # 默认规则：匹配中文简称/关键词及常见英文别名
+    # CN: 转生为第七王子 / 第七王子
+    # EN: 7th Prince / Seventh Prince
+    mover = default_move(r"(转生为第七王子|第七王子|7th\s*Prince|Seventh\s*Prince)")
+    return mover(where, to)
+
+
 def default_move(regex) -> Mover:
     def move(where: Path, to: Path):
         LOGGER.info(f"从: {where}")
