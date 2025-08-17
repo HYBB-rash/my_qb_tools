@@ -63,6 +63,15 @@ def mover_tmdb_137065_s3(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 123249-更衣人偶坠入爱河 第1季
+@factory.register("tmdb-123249-s1")
+def mover_tmdb_123249_s1(where: Path, to: Path) -> None:
+    # 常见别名：日文/英文/中文
+    # Sono Bisque Doll wa Koi wo Suru / My Dress-Up Darling / 更衣人偶坠入爱河
+    mover = default_move(r"(更衣人偶|Bisque Doll|Dress[\- ]?Up Darling)")
+    return mover(where, to)
+
+
 def default_move(regex) -> Mover:
     def move(where: Path, to: Path):
         LOGGER.info(f"从: {where}")
