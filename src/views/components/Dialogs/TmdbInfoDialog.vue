@@ -155,16 +155,17 @@ async function clearExisting() {
   backToResults()
   hasExistingInfo.value = false
 }
-// Dialog width as 0.618 of the window width
-const { width: winWidth } = useWindowSize()
+// Dialog size: width/height as 0.618 of viewport
+const { width: winWidth, height: winHeight } = useWindowSize()
 const dialogWidth = computed(() => Math.round(winWidth.value * 0.618))
+const dialogHeight = computed(() => Math.round(winHeight.value * 0.618))
 </script>
 
 <template>
   <v-dialog v-model="isOpened" :width="dialogWidth">
-    <v-card>
+    <v-card class="d-flex flex-column" :style="{ height: dialogHeight + 'px' }">
       <v-card-title>设定 TMDB 信息</v-card-title>
-      <v-card-text>
+      <v-card-text style="flex: 1; overflow-y: auto">
         <div v-if="!hasExistingInfo" class="text-medium-emphasis mb-3">{{ props.initialName }}</div>
 
         <!-- 搜索视图 -->
