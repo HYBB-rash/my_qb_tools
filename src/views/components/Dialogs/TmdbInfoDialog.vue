@@ -34,9 +34,9 @@ const selectedSeason = ref<number | null>(null)
 const hasExistingInfo = ref(false)
 
 const cdnBase = 'https://image.tmdb.org/t/p'
-const posterSize = 'w185'
-function posterUrl(path: string | null) {
-  return path ? `${cdnBase}/${posterSize}${path}` : ''
+const posterThumbSize = 'w185' // 搜索结果列表缩略图
+function posterUrlFor(size: string, path: string | null) {
+  return path ? `${cdnBase}/${size}${path}` : ''
 }
 
 async function search() {
@@ -101,7 +101,8 @@ const showSearch = computed(() => !selectedId.value)
 const firstAirDate = computed(() => details.value?.first_air_date || '')
 const titleToShow = computed(() => details.value?.name || props.initialName || '')
 const overview = computed(() => details.value?.overview || '')
-const detailPoster = computed(() => posterUrl(details.value?.poster_path ?? null))
+// 详情使用最高分辨率 original；若带宽受限可改为 'w780'
+const detailPoster = computed(() => posterUrlFor('original', details.value?.poster_path ?? null))
 const seasonOptions = computed(() => (details.value?.seasons || []).filter(s => s.season_number > 0))
 function backToResults() {
   selectedId.value = null
@@ -187,7 +188,7 @@ const dialogHeight = computed(() => Math.round(winHeight.value * 0.618))
             <v-row dense class="ma-0">
               <v-col v-for="item in results" :key="item.id" cols="12" sm="6" md="4">
                 <v-card class="cursor-pointer" :elevation="selectedId === item.id ? 8 : 2" @click="pick(item)">
-                  <v-img :src="posterUrl(item.poster_path)" height="200" cover />
+                  <v-img :src="posterUrlFor(posterThumbSize, item.poster_path)" height="200" cover />
                   <v-card-title class="text-subtitle-2">{{ item.name }}</v-card-title>
                   <v-card-subtitle>{{ item.first_air_date || '未知首播日期' }}</v-card-subtitle>
                   <v-card-text>
