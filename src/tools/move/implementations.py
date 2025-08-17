@@ -6,6 +6,19 @@ from tools.share import LOGGER, Factory, find_files_by_regex
 factory: Factory[Mover] = Factory()
 
 
+# 246862-新·吊带袜天使 第1季
+@factory.register("tmdb-246862-s1")
+def mover_tmdb_246862_s1(where: Path, to: Path) -> None:
+    # 匹配：
+    # - 中文：新·吊带袜天使（兼容不同间隔符，如 · ・ ･，以及可无分隔符）
+    # - 英文：Panty &/and Stocking (with Garterbelt)
+    # 注意：不匹配仅有“吊带袜天使”（避免旧版混入）
+    mover = default_move(
+        r"(?i)(新[·･・]?\s*吊带袜天使|Panty\s*(?:&|and)\s*Stocking(?:\s*with\s*Garterbelt)?)"
+    )
+    return mover(where, to)
+
+
 @factory.register("tmdb-243224-s1")
 def mover_tmdb_243224_s1(where: Path, to: Path) -> None:
     mover = default_move(r"凡人修仙传")
