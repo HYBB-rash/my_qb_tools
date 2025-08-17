@@ -68,7 +68,7 @@ def mover_tmdb_137065_s3(where: Path, to: Path) -> None:
 def mover_tmdb_123249_s1(where: Path, to: Path) -> None:
     # 常见别名：日文/英文/中文
     # Sono Bisque Doll wa Koi wo Suru / My Dress-Up Darling / 更衣人偶坠入爱河
-    mover = default_move(r"(更衣人偶|Bisque Doll|Dress[\- ]?Up Darling)")
+    mover = default_move(r"(戀上換裝娃娃|更衣人偶|Bisque Doll|Dress[\- ]?Up Darling)")
     return mover(where, to)
 
 
@@ -89,7 +89,9 @@ def mover_tmdb_82739_s1(where: Path, to: Path) -> None:
     # CN: 青春猪头少年 / 兔女郎学姐 / 青豚
     # EN: Rascal Does Not Dream (of Bunny Girl Senpai) / Bunny Girl Senpai
     # Romaji: Seishun Buta Yarou
-    mover = default_move(r"(青春猪头少年|兔女郎学姐|青豚|Bunny\s*Girl\s*Senpai|Rascal\s*Does\s*Not\s*Dream|Seishun\s*Buta\s*Yarou)")
+    mover = default_move(
+        r"(青春豬頭少年|青春猪头少年|兔女郎学姐|青豚|Bunny\s*Girl\s*Senpai|Rascal\s*Does\s*Not\s*Dream|Seishun\s*Buta\s*Yarou)"
+    )
     return mover(where, to)
 
 
