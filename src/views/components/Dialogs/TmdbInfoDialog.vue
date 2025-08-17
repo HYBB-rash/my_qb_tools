@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onBeforeUnmount, ref } from 'vue'
 import { useWindowSize } from '@vueuse/core'
+import { useDisplay } from 'vuetify'
 import { useDialog } from '@/composables'
 import { useMaindataStore, useTagStore, useTorrentStore } from '@/stores'
 import tmdb from '@/services/tmdb'
@@ -157,14 +158,66 @@ async function clearExisting() {
   hasExistingInfo.value = false
 }
 // Dialog size: width/height as 0.618 of viewport
+// iOS Safari: window.innerHeight 与地址栏/键盘交互不稳定；优先使用 VisualViewport.height
 const { width: winWidth, height: winHeight } = useWindowSize()
+const visualViewportHeight = ref<number | null>(
+  typeof window !== 'undefined' && window.visualViewport ? window.visualViewport.height : null,
+)
+
+function handleVvResize() {
+  if (typeof window !== 'undefined') {
+    if (window.visualViewport) {
+      visualViewportHeight.value = window.visualViewport.height
+    }
+    // 兜底：若尺寸异常小，回退到 innerHeight
+    if (!visualViewportHeight.value || visualViewportHeight.value < 200) {
+      visualViewportHeight.value = window.innerHeight
+    }
+  }
+}
+
+onMounted(() => {
+  // 初始兜底一次
+  handleVvResize()
+  // 监听 iOS Safari 常见事件：visualViewport resize/scroll、window resize、方向变化
+  if (typeof window !== 'undefined') {
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', handleVvResize)
+      window.visualViewport.addEventListener('scroll', handleVvResize)
+    }
+    window.addEventListener('resize', handleVvResize)
+    window.addEventListener('orientationchange', handleVvResize)
+  }
+})
+
+onBeforeUnmount(() => {
+  if (typeof window !== 'undefined') {
+    if (window.visualViewport) {
+      window.visualViewport.removeEventListener('resize', handleVvResize)
+      window.visualViewport.removeEventListener('scroll', handleVvResize)
+    }
+    window.removeEventListener('resize', handleVvResize)
+    window.removeEventListener('orientationchange', handleVvResize)
+  }
+})
+
+const effectiveHeight = computed(() => visualViewportHeight.value ?? winHeight.value)
 const dialogWidth = computed(() => Math.round(winWidth.value * 0.618))
-const dialogHeight = computed(() => Math.round(winHeight.value * 0.618))
+const dialogHeight = computed(() => Math.round(effectiveHeight.value * 0.618))
+
+// 移动端使用全屏，避免像素高度不稳定
+const { mobile } = useDisplay()
+const cardStyle = computed(() => {
+  if (mobile.value) {
+    return { maxHeight: '100dvh' } // 让内容区滚动，外层自适应
+  }
+  return { height: dialogHeight.value + 'px' }
+})
 </script>
 
 <template>
-  <v-dialog v-model="isOpened" :width="dialogWidth">
-    <v-card class="d-flex flex-column" :style="{ height: dialogHeight + 'px' }">
+  <v-dialog v-model="isOpened" :width="dialogWidth" :fullscreen="mobile">
+    <v-card class="d-flex flex-column" :style="cardStyle">
       <v-card-title>设定 TMDB 信息</v-card-title>
       <v-card-text style="flex: 1; overflow-y: auto">
         <div v-if="!hasExistingInfo" class="text-medium-emphasis mb-3">{{ props.initialName }}</div>
