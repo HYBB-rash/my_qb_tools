@@ -6,6 +6,18 @@ from tools.share import LOGGER, Factory, find_files_by_regex
 factory: Factory[Mover] = Factory()
 
 
+# 278870-你的降临 第1季
+@factory.register("tmdb-278870-s1")
+def mover_tmdb_278870_s1(where: Path, to: Path) -> None:
+    # 常见别名：中文简繁/英文
+    # CN: 你的降临 / 你的降臨（兼容常见分隔符）
+    # EN: Hell Upon Me（常见做种命名，如 Hell.Upon.Me）
+    sep = r"[\s._-]*"
+    pattern = rf"(?i)(你的{sep}降[临臨]|Hell{sep}Upon{sep}Me)"
+    mover = default_move(pattern)
+    return mover(where, to)
+
+
 # 240411-胆大党 第1季
 @factory.register("tmdb-240411-s1")
 def mover_tmdb_240411_s1(where: Path, to: Path) -> None:
