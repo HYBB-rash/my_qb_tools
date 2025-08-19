@@ -6,6 +6,19 @@ from tools.share import LOGGER, Factory, find_files_by_regex
 factory: Factory[Mover] = Factory()
 
 
+# 79166-碧蓝之海 第2季
+@factory.register("tmdb-79166-s2")
+def mover_tmdb_79166_s2(where: Path, to: Path) -> None:
+    # 常见别名：中文简繁/英文/日文
+    # CN: 碧蓝之海 / 碧藍之海
+    # EN: Grand Blue / Grand Blue Dreaming（常见做种命名，如 Grand.Blue）
+    # JP: ぐらんぶる（拓展匹配）
+    sep = r"[\s._-]*"
+    pattern = rf"(?i)(碧[蓝藍]之海|Grand{sep}Blue(?:{sep}Dreaming)?|ぐらんぶる)"
+    mover = default_move(pattern)
+    return mover(where, to)
+
+
 # 254476-献鱼 第1季
 @factory.register("tmdb-254476-s1")
 def mover_tmdb_254476_s1(where: Path, to: Path) -> None:

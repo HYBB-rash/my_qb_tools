@@ -15,7 +15,7 @@ RULE="$1"
 cat <<PROMPT
 为这部剧生成规则：${RULE}
 自行完成测试。测试完成以后，diff use all change,根据修改记录生成commit msg.
-最后提交修改并完成推送。
+最后提交修改(git commit)并完成推送(git push)。
 
 要求：
 - 严格遵循仓库的“Repository Guidelines”。
