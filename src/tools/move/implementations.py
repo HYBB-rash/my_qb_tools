@@ -185,3 +185,11 @@ def mover_tmdb_278196_s1(where: Path, to: Path) -> None:
     )
     mover = default_move(pattern)
     return mover(where, to)
+
+
+# 272118-小城日常 第1季
+@factory.register("tmdb-272118-s1")
+def mover_tmdb_272118_s1(where: Path, to: Path) -> None:
+    # 常见命名：中文原名
+    mover = default_move(r"小城日常")
+    return mover(where, to)
