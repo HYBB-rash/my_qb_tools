@@ -61,6 +61,11 @@ $stamp = Get-Date -Format 'yyyyMMdd_HHmmss'
 $PyLogFile = Join-Path $LogDir ("run_py_{0}.log" -f $stamp)
 $env:MY_QB_TOOLS_LOG_FILE = $PyLogFile
 
-& $VenvPython $ExecutePy
-
+try {
+    $p = Start-Process -FilePath $VenvPython -ArgumentList $ExecutePy -PassThru -WindowStyle Hidden
+    $p.WaitForExit()
+}
+finally {
+    cmd /c "net use `"$ShareRoot`" /delete /y" | Out-Null
+}
 exit $LASTEXITCODE
