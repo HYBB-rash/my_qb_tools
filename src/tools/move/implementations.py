@@ -6,6 +6,14 @@ from tools.share import LOGGER, Factory, find_files_by_regex
 factory: Factory[Mover] = Factory()
 
 
+# 254476-献鱼 第1季
+@factory.register("tmdb-254476-s1")
+def mover_tmdb_254476_s1(where: Path, to: Path) -> None:
+    # 兼容简繁体：献鱼 / 獻魚
+    mover = default_move(r"(?i)[献獻][鱼魚]")
+    return mover(where, to)
+
+
 # 278870-你的降临 第1季
 @factory.register("tmdb-278870-s1")
 def mover_tmdb_278870_s1(where: Path, to: Path) -> None:
