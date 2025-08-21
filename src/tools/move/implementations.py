@@ -69,6 +69,13 @@ def mover_tmdb_243224_s1(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 106449-凡人修仙传 第1季
+@factory.register("tmdb-106449-s1")
+def mover_tmdb_106449_s1(where: Path, to: Path) -> None:
+    mover = default_move(r"凡人修仙传")
+    return mover(where, to)
+
+
 # 253955-定风波 第一季
 @factory.register("tmdb-253955-s1")
 def mover_tmdb_253955_s1(where: Path, to: Path) -> None:
