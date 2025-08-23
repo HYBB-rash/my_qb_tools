@@ -6,6 +6,17 @@ from tools.share import LOGGER, Factory, find_files_by_regex
 factory: Factory[Mover] = Factory()
 
 
+# 272059-凸变英雄X 第1季
+@factory.register("tmdb-272059-s1")
+def mover_tmdb_272059_s1(where: Path, to: Path) -> None:
+    # 常见别名：中文简繁 + 可选分隔符与空格
+    # CN: 凸变英雄X / 凸變英雄X / 凸变英雄 X / 凸變英雄-X 等
+    sep = r"[\s._-]*"
+    pattern = rf"(?i)凸[变變]英雄{sep}X"
+    mover = default_move(pattern)
+    return mover(where, to)
+
+
 # 207468-怪兽8号 第1季
 @factory.register("tmdb-207468-s1")
 def mover_tmdb_207468_s1(where: Path, to: Path) -> None:
