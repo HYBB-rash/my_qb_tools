@@ -6,6 +6,19 @@ from tools.share import LOGGER, Factory, find_files_by_regex
 factory: Factory[Mover] = Factory()
 
 
+# 280110-正义使者 - 我的英雄学院之非法英雄 第1季
+@factory.register("tmdb-280110-s1")
+def mover_tmdb_280110_s1(where: Path, to: Path) -> None:
+    # 常见别名：中文简繁/英文/日文
+    # CN: 正义使者 / 正義使者；我的英雄学院之非法英雄 / 我的英雄學院之非法英雄（兼容“之”可选与分隔符）
+    # EN: My Hero Academia: Vigilantes / My Hero Academia Illegals（允许分隔符/冒号变体）
+    # JP: ヴィジランテ（含）/ 僕のヒーローアカデミア ILLEGALS
+    sep = r"[\s._-]*"
+    pattern = rf"(?i)(正[义義]使者|我的英雄[学學]院(?:之)?{sep}非法英雄|My{sep}Hero{sep}Academia(?:{sep}:?{sep})?(?:Vigilantes|Illegals)|Vigilantes{sep}My{sep}Hero{sep}Academia|僕のヒーローアカデミア{sep}ILLEGALS|ヴィジランテ)"
+    mover = default_move(pattern)
+    return mover(where, to)
+
+
 # 272059-凸变英雄X 第1季
 @factory.register("tmdb-272059-s1")
 def mover_tmdb_272059_s1(where: Path, to: Path) -> None:
