@@ -6,6 +6,19 @@ from tools.share import LOGGER, Factory, find_files_by_regex
 factory: Factory[Mover] = Factory()
 
 
+# 207468-怪兽8号 第1季
+@factory.register("tmdb-207468-s1")
+def mover_tmdb_207468_s1(where: Path, to: Path) -> None:
+    # 常见别名：中文简繁/日文/英文
+    # CN: 怪兽8号 / 怪獸8號 / 怪兽八号（数字/汉字“八”均可；号/號 兼容）
+    # JP: 怪獣8号
+    # EN: Kaiju No. 8（允许 No 后有无点、分隔符变体）
+    sep = r"[\s._-]*"
+    pattern = rf"(?i)(怪[兽獸獣][8八][号號]|Kaiju{sep}No\.?{sep}8)"
+    mover = default_move(pattern)
+    return mover(where, to)
+
+
 # 79166-碧蓝之海 第2季
 @factory.register("tmdb-79166-s2")
 def mover_tmdb_79166_s2(where: Path, to: Path) -> None:
