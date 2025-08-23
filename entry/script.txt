@@ -7,4 +7,4 @@ powershell -NoProfile -File "C:\Users\Herman\Desktop\my_qb_tools\entry\trigger.p
 
 codex exec "$(./entry/codex_one_shot.sh "tmdb-254476-s1 (献鱼)")"
 
-codex exec --full-auto "$(./entry/codex_one_shot.sh "tmdb-207468-s1 (怪兽8号)")"
+codex exec --full-auto "$(./entry/codex_one_shot.sh "tmdb-82739-s2 (青春猪头少年不会梦到兔女郎学姐)")"

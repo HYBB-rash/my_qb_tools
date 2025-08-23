@@ -184,6 +184,19 @@ def mover_tmdb_82739_s1(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 82739-青春猪头少年不会梦到兔女郎学姐 第2季
+@factory.register("tmdb-82739-s2")
+def mover_tmdb_82739_s2(where: Path, to: Path) -> None:
+    # 常见别名：
+    # CN: 青春猪头少年 / 兔女郎学姐 / 青豚
+    # EN: Rascal Does Not Dream (of Bunny Girl Senpai) / Bunny Girl Senpai
+    # Romaji: Seishun Buta Yarou
+    mover = default_move(
+        r"(青春豬頭少年|青春猪头少年|兔女郎学姐|青豚|Bunny\s*Girl\s*Senpai|Rascal\s*Does\s*Not\s*Dream|Seishun\s*Buta\s*Yarou)"
+    )
+    return mover(where, to)
+
+
 def default_move(regex) -> Mover:
     def move(where: Path, to: Path):
         LOGGER.info(f"从: {where}")
