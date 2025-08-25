@@ -100,6 +100,15 @@ def mover_tmdb_246862_s1(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+@factory.register("tmdb-280945-s1")
+def mover_tmdb_280945_s1(where: Path, to: Path) -> None:
+    # 暴君的厨师 第1季
+    # 兼容：简繁体 + 常见分隔符（空格/点/下划线/连字符）
+    sep = r"[\s._-]*"
+    mover = default_move(rf"(?i)暴君的{sep}[厨廚]{sep}[师師]")
+    return mover(where, to)
+
+
 @factory.register("tmdb-243224-s1")
 def mover_tmdb_243224_s1(where: Path, to: Path) -> None:
     mover = default_move(r"凡人修仙传")
