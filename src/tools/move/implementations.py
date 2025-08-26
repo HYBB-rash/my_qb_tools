@@ -64,6 +64,16 @@ def mover_tmdb_254476_s1(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 256721-咔嗒咔嗒 第1季
+@factory.register("tmdb-256721-s1")
+def mover_tmdb_256721_s1(where: Path, to: Path) -> None:
+    # 兼容：咔嗒咔嗒 / 咔哒咔哒；允许中间出现空格/点/下划线/连字符
+    sep = r"[\s._-]*"
+    pattern = rf"(?i)咔[嗒哒]{sep}咔[嗒哒]"
+    mover = default_move(pattern)
+    return mover(where, to)
+
+
 # 278870-你的降临 第1季
 @factory.register("tmdb-278870-s1")
 def mover_tmdb_278870_s1(where: Path, to: Path) -> None:
