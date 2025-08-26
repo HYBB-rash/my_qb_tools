@@ -26,6 +26,9 @@ def test_mover_tmdb_280945_s1_links_expected_files():
             "暴君的 廚 師 - S01E02.mkv": True,
             # 混合分隔符
             "暴君的-厨_师.S01E03.mkv": True,
+            # 英文别名
+            "Bon.Appetit.Your.Majesty.S01E04.mkv": True,
+            "Bon_Appetit-Your.Majesty.S01E05.mkv": True,
             # 其他剧名：不应匹配
             "暴君的厨艺.S01E01.mkv": False,
             "别的剧.S01E01.mkv": False,
@@ -50,4 +53,3 @@ def test_mover_tmdb_280945_s1_links_expected_files():
             assert src_stat.st_ino == dst_stat.st_ino, (
                 f"{name} 不是硬链接（inode 不一致）"
             )
-

@@ -67,9 +67,11 @@ def mover_tmdb_254476_s1(where: Path, to: Path) -> None:
 # 256721-咔嗒咔嗒 第1季
 @factory.register("tmdb-256721-s1")
 def mover_tmdb_256721_s1(where: Path, to: Path) -> None:
-    # 兼容：咔嗒咔嗒 / 咔哒咔哒；允许中间出现空格/点/下划线/连字符
+    # 兼容：
+    # - 中文：咔嗒咔嗒 / 咔哒咔哒（允许中间出现空格/点/下划线/连字符）
+    # - 英文：Gachiakuta / Gachi Akuta（允许空格/点/下划线/连字符分隔）
     sep = r"[\s._-]*"
-    pattern = rf"(?i)咔[嗒哒]{sep}咔[嗒哒]"
+    pattern = rf"(?i)(咔[嗒哒]{sep}咔[嗒哒]|Gachi{sep}akuta)"
     mover = default_move(pattern)
     return mover(where, to)
 
@@ -115,7 +117,8 @@ def mover_tmdb_280945_s1(where: Path, to: Path) -> None:
     # 暴君的厨师 第1季
     # 兼容：简繁体 + 常见分隔符（空格/点/下划线/连字符）
     sep = r"[\s._-]*"
-    mover = default_move(rf"(?i)暴君的{sep}[厨廚]{sep}[师師]")
+    # 英文别名：Bon.Appetit.Your.Majesty（允许分隔符变体）
+    mover = default_move(rf"(?i)(暴君的{sep}[厨廚]{sep}[师師]|Bon{sep}Appetit{sep}Your{sep}Majesty)")
     return mover(where, to)
 
 

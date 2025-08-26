@@ -26,6 +26,9 @@ def test_mover_tmdb_256721_s1_links_expected_files():
             "咔哒-咔哒.S01E02.mkv": True,
             # 混合分隔符
             "咔嗒_咔嗒.S01E03.mkv": True,
+            # 英文别名：Gachiakuta（含分隔符变体）
+            "Gachiakuta.S01E04.mkv": True,
+            "Gachi-Akuta.S01E05.mkv": True,
             # 不应匹配：仅一个“咔嗒”
             "咔嗒.S01E01.mkv": False,
             # 其他剧名
@@ -51,4 +54,3 @@ def test_mover_tmdb_256721_s1_links_expected_files():
             assert src_stat.st_ino == dst_stat.st_ino, (
                 f"{name} 不是硬链接（inode 不一致）"
             )
-
