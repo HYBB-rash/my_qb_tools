@@ -9,8 +9,11 @@ factory: Factory[Mover] = Factory()
 # 280100-垂涎 第1季
 @factory.register("tmdb-280100-s1")
 def mover_tmdb_280100_s1(where: Path, to: Path) -> None:
-    # 常见命名：中文原名（垂涎）
-    mover = default_move(r"垂涎")
+    # 常见命名：中文原名（垂涎）以及别名 ABO
+    # 为避免误匹配“垂涎欲滴”等更长词组：
+    # - 对“垂涎”要求后接分隔符/结尾（如 空格/点/下划线/连字符/括号/方括号）
+    # - ABO 作为独立词匹配（大小写不敏感）
+    mover = default_move(r"(?i)(垂涎(?=[\s._\-\[\(]|$)|\bABO\b)")
     return mover(where, to)
 
 

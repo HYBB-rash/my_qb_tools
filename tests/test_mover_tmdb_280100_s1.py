@@ -23,9 +23,16 @@ def test_mover_tmdb_280100_s1_links_expected_files():
             # 中文原名匹配
             "垂涎.S01E01.1080p.mkv": True,
             "[Group] 垂涎 - 02.mkv": True,
+            # 英文别名：ABO（独立词，大小写不敏感）
+            "ABO.S01E02.2160p.mkv": True,
+            "[Group] ABO - 03.mkv": True,
+            "abo - 04.mkv": True,
             # 不应匹配
             "别的剧.S01E01.mkv": False,
             "垂涎欲滴.S01E01.mkv": False,  # 避免误匹配更长词组
+            # ABO 作为子串不应匹配
+            "ABO2.E01.mkv": False,
+            "XABO - 01.mkv": False,
         }
 
         for name, _ in cases.items():
@@ -47,4 +54,3 @@ def test_mover_tmdb_280100_s1_links_expected_files():
             assert src_stat.st_ino == dst_stat.st_ino, (
                 f"{name} 不是硬链接（inode 不一致）"
             )
-
