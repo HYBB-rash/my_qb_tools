@@ -128,6 +128,14 @@ def mover_tmdb_243224_s1(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 253093-与晋长安 第1季
+@factory.register("tmdb-253093-s1")
+def mover_tmdb_253093_s1(where: Path, to: Path) -> None:
+    # 兼容简繁体：与晋长安 / 與晉長安
+    mover = default_move(r"(?i)[与與][晋晉][长長]安")
+    return mover(where, to)
+
+
 # 106449-凡人修仙传 第1季
 @factory.register("tmdb-106449-s1")
 def mover_tmdb_106449_s1(where: Path, to: Path) -> None:
