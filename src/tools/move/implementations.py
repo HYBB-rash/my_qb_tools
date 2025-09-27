@@ -87,6 +87,29 @@ def mover_tmdb_256721_s1(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 256920-许我耀眼 第1季
+@factory.register("tmdb-256920-s1")
+def mover_tmdb_256920_s1(where: Path, to: Path) -> None:
+    # 常见别名：中文简繁/大乔小乔/拼音/英文
+    # CN: 许我耀眼 / 許我耀眼；大乔小乔 / 大喬小喬（允许常见分隔符）
+    # Pinyin: Xu Wo Yao Yan / Da Qiao Xiao Qiao
+    # EN: Let Me Shine / Love's Ambition
+    sep = r"[\s._-]*"
+    pattern = (
+        rf"(?i)("
+        rf"许{sep}我{sep}耀{sep}眼|"
+        rf"許{sep}我{sep}耀{sep}眼|"
+        rf"大{sep}[乔喬]{sep}小{sep}[乔喬]|"
+        rf"Xu{sep}Wo{sep}Yao{sep}Yan|"
+        rf"Da{sep}Qiao{sep}Xiao{sep}Qiao|"
+        rf"Let{sep}Me{sep}Shine|"
+        rf"Love'?s{sep}Ambition"
+        rf")"
+    )
+    mover = default_move(pattern)
+    return mover(where, to)
+
+
 # 278870-你的降临 第1季
 @factory.register("tmdb-278870-s1")
 def mover_tmdb_278870_s1(where: Path, to: Path) -> None:
