@@ -254,6 +254,40 @@ def mover_tmdb_65930_s7(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+@factory.register("tmdb-65930-s8")
+def mover_tmdb_65930_s8(where: Path, to: Path) -> None:
+    # 常见别名：中文简繁/英文/罗马字/日文；需同时出现第八季标记
+    # 兼容季节表达：S08 / Season 8 / 8th Season / Eighth Season / 第八季 / 第8期 / 第八期 / 八期 等
+    sep = r"[\s._-]*"
+    base_en = rf"My{sep}Hero{sep}Academia(?!{sep}(?:Vigilantes|Illegals))"
+    base_romaji = rf"Boku{sep}no{sep}Hero{sep}Academia"
+    base_cn = rf"我的英雄[学學]院"
+    base_jp = rf"僕のヒーローアカデミア"
+    season_tokens = [
+        rf"(?<!\d)S0?8(?!\d)",
+        rf"Season{sep}0?8(?!\d)",
+        rf"Season{sep}VIII\b",
+        rf"8th{sep}Season",
+        rf"Eighth{sep}Season",
+        rf"第{sep}?0?8{sep}?[季期]",
+        rf"第{sep}?[捌八][季期]",
+        rf"第八{sep}?[季期]",
+        rf"[捌八]{sep}?期",
+        rf"[捌八]{sep}?季",
+        rf"8{sep}?期",
+        rf"8{sep}?季",
+        rf"８{sep}?期",
+        rf"８{sep}?季",
+    ]
+    season_mark = "|".join(season_tokens)
+    pattern = (
+        rf"(?i)^(?=.*(?:{base_en}|{base_cn}|{base_romaji}|{base_jp}))"
+        rf"(?=.*(?:{season_mark})).*"
+    )
+    mover = default_move(pattern)
+    return mover(where, to)
+
+
 # 271649-琉璃的宝石 第1季
 @factory.register("tmdb-271649-s1")
 def mover_tmdb_271649_s1(where: Path, to: Path) -> None:
