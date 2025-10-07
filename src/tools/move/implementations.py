@@ -30,6 +30,27 @@ def mover_tmdb_280110_s1(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 65930-我的英雄学院 第1季
+@factory.register("tmdb-65930-s1")
+def mover_tmdb_65930_s1(where: Path, to: Path) -> None:
+    # 常见别名：中文简繁/英文/罗马字/日文
+    # CN: 我的英雄学院 / 我的英雄學院
+    # EN: My Hero Academia（排除 Vigilantes/Illegals 等衍生词）
+    # Romaji: Boku no Hero Academia
+    # JP: 僕のヒーローアカデミア
+    sep = r"[\s._-]*"
+    pattern = (
+        rf"(?i)("
+        rf"My{sep}Hero{sep}Academia(?!{sep}(?:Vigilantes|Illegals))|"
+        rf"Boku{sep}no{sep}Hero{sep}Academia|"
+        rf"我的英雄[学學]院|"
+        rf"僕のヒーローアカデミア"
+        rf")"
+    )
+    mover = default_move(pattern)
+    return mover(where, to)
+
+
 # 271649-琉璃的宝石 第1季
 @factory.register("tmdb-271649-s1")
 def mover_tmdb_271649_s1(where: Path, to: Path) -> None:
