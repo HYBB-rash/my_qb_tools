@@ -84,6 +84,40 @@ def mover_tmdb_65930_s2(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+@factory.register("tmdb-65930-s3")
+def mover_tmdb_65930_s3(where: Path, to: Path) -> None:
+    # 常见别名：中文简繁/英文/罗马字/日文；需同时出现第三季标记
+    # 兼容季节表达：S03 / Season 3 / 3rd Season / Third Season / 第三季 / 第3期 / 第三期 / 三期 等
+    sep = r"[\s._-]*"
+    base_en = rf"My{sep}Hero{sep}Academia(?!{sep}(?:Vigilantes|Illegals))"
+    base_romaji = rf"Boku{sep}no{sep}Hero{sep}Academia"
+    base_cn = rf"我的英雄[学學]院"
+    base_jp = rf"僕のヒーローアカデミア"
+    season_tokens = [
+        rf"(?<!\d)S0?3(?!\d)",
+        rf"Season{sep}0?3(?!\d)",
+        rf"Season{sep}III\b",
+        rf"3rd{sep}Season",
+        rf"Third{sep}Season",
+        rf"第{sep}?0?3{sep}?[季期]",
+        rf"第{sep}?[叁參叄三]{sep}?[季期]",
+        rf"第三{sep}?[季期]",
+        rf"[叁參叄三]{sep}?期",
+        rf"[叁參叄三]{sep}?季",
+        rf"3{sep}?期",
+        rf"3{sep}?季",
+        rf"３{sep}?期",
+        rf"３{sep}?季",
+    ]
+    season_mark = "|".join(season_tokens)
+    pattern = (
+        rf"(?i)^(?=.*(?:{base_en}|{base_cn}|{base_romaji}|{base_jp}))"
+        rf"(?=.*(?:{season_mark})).*"
+    )
+    mover = default_move(pattern)
+    return mover(where, to)
+
+
 # 271649-琉璃的宝石 第1季
 @factory.register("tmdb-271649-s1")
 def mover_tmdb_271649_s1(where: Path, to: Path) -> None:
