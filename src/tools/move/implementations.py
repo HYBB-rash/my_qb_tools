@@ -30,6 +30,26 @@ def mover_tmdb_280110_s1(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+# 271649-琉璃的宝石 第1季
+@factory.register("tmdb-271649-s1")
+def mover_tmdb_271649_s1(where: Path, to: Path) -> None:
+    # 常见别名：中文简繁/日文/英文
+    # CN: 琉璃的宝石 / 琉璃的寶石（允许常见分隔符）
+    # JP: 瑠璃の宝石 / 瑠璃ノ宝石
+    # EN: Ruri no Houseki / Ruri's Jewels
+    sep = r"[\s._\-']*"
+    pattern = (
+        rf"(?i)("
+        rf"琉璃的{sep}[宝寶]{sep}石|"
+        rf"瑠璃[のノ]{sep}宝石|"
+        rf"Ruri{sep}no{sep}Houseki|"
+        rf"Ruri{sep}'?s{sep}Jewels?"
+        rf")"
+    )
+    mover = default_move(pattern)
+    return mover(where, to)
+
+
 # 272059-凸变英雄X 第1季
 @factory.register("tmdb-272059-s1")
 def mover_tmdb_272059_s1(where: Path, to: Path) -> None:
