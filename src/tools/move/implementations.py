@@ -412,6 +412,15 @@ def mover_tmdb_213402_s1(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+@factory.register("tmdb-262928-s1")
+def mover_tmdb_262928_s1(where: Path, to: Path) -> None:
+    # 常见命名：中文简繁（入青云 / 入青雲），允许常见分隔符
+    sep = r"[\s._-]*"
+    pattern = rf"(?i)入{sep}?青{sep}?[云雲]"
+    mover = default_move(pattern)
+    return mover(where, to)
+
+
 # 271649-琉璃的宝石 第1季
 @factory.register("tmdb-271649-s1")
 def mover_tmdb_271649_s1(where: Path, to: Path) -> None:
