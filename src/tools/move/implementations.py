@@ -326,6 +326,44 @@ def mover_tmdb_120089_s3(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+@factory.register("tmdb-120089-s2")
+def mover_tmdb_120089_s2(where: Path, to: Path) -> None:
+    # 常见别名：中文简繁/英文/日文；需同时出现第二季标记
+    # EN: SPY x FAMILY（兼容 x/× 作为分隔符与常见分隔符变体）
+    # JP: スパイファミリー
+    sep = r"[\s._-]*"
+    base_patterns = [
+        rf"间谍{sep}过家家",
+        rf"間諜{sep}過家家",
+        rf"SPY{sep}[x×]{sep}FAMILY",
+        rf"スパイ{sep}?ファミリー",
+    ]
+    season_tokens = [
+        rf"(?<!\d)S0?2(?!\d)",
+        rf"Season{sep}0?2(?!\d)",
+        rf"Season{sep}II\b",
+        rf"2nd{sep}Season",
+        rf"Second{sep}Season",
+        rf"第{sep}?0?2{sep}?[季期]",
+        rf"第{sep}?[贰貳弐二ニ]{sep}?[季期]",
+        rf"第二{sep}?[季期]",
+        rf"[贰貳弐二ニ]{sep}?期",
+        rf"[贰貳弐二ニ]{sep}?季",
+        rf"2{sep}?期",
+        rf"2{sep}?季",
+        rf"２{sep}?期",
+        rf"２{sep}?季",
+    ]
+    base_mark = "|".join(base_patterns)
+    season_mark = "|".join(season_tokens)
+    pattern = (
+        rf"(?i)^(?=.*(?:{base_mark}))"
+        rf"(?=.*(?:{season_mark})).*"
+    )
+    mover = default_move(pattern)
+    return mover(where, to)
+
+
 @factory.register("tmdb-213402-s1")
 def mover_tmdb_213402_s1(where: Path, to: Path) -> None:
     # 常见别名：中文简繁/英文/日文/罗马字
