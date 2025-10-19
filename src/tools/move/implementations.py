@@ -326,6 +326,25 @@ def mover_tmdb_120089_s3(where: Path, to: Path) -> None:
     return mover(where, to)
 
 
+@factory.register("tmdb-213402-s1")
+def mover_tmdb_213402_s1(where: Path, to: Path) -> None:
+    # 常见别名：中文简繁/英文/日文/罗马字
+    # CN: 超常技能开启奇幻世界美食之旅 / 超常技能開啟奇幻世界美食之旅
+    # EN: Campfire Cooking in Another World with My Absurd Skill
+    # JP: とんでもスキルで異世界放浪メシ / Tondemo Skill de Isekai Hourou Meshi
+    sep = r"[\s._-]*"
+    pattern = (
+        rf"(?i)("
+        rf"超常技能[开開][启啟]{sep}奇幻世界美食之旅|"
+        rf"Campfire{sep}Cooking{sep}in{sep}Another{sep}World{sep}with{sep}My{sep}Absurd{sep}Skill|"
+        rf"Tondemo{sep}Skill{sep}de{sep}Isekai{sep}Hourou{sep}Meshi|"
+        rf"とんでもスキルで異世界放浪メシ"
+        rf")"
+    )
+    mover = default_move(pattern)
+    return mover(where, to)
+
+
 # 271649-琉璃的宝石 第1季
 @factory.register("tmdb-271649-s1")
 def mover_tmdb_271649_s1(where: Path, to: Path) -> None:
